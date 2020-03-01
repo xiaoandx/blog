@@ -8,12 +8,12 @@
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>
-    css中使用 object-fit 来控制可替换元素的样式 | 一个拥有像素眼的后端工程师
+    利用Gitee免费创建图床-方便、快捷、稳定 | 一个拥有像素眼的后端工程师
   </title>
   <meta name="description" content="Java是世界上第一好的语言😏">
   
   <meta name="keywords" content="
-  object-fit,replaced element
+  free
   ">
   
   <meta name="author" content="XIAOANDX">
@@ -146,39 +146,68 @@
     <i class="fa fa-user-o"></i>
     XIAOANDX
 
-    <span class="post-date float-right" title="{{moment(1582213595000).format('MMM DD, YYYY, h:mm:ss A')}}">
+    <span class="post-date float-right" title="{{moment(1583044235000).format('MMM DD, YYYY, h:mm:ss A')}}">
       
           <i class="fa fa-pencil-square-o"></i>
       
-      {{moment(1582213595000).fromNow()}}
+      {{moment(1583044235000).fromNow()}}
     </span>
   </h3>
 
   <article class="post-content">
-    <h1>css中使用 object-fit 来控制可替换元素的样式</h1>
-    <p>偷懒很久了，昨天好不容易花点时间做了一下css的一些测验，发现自己居然连 <code>object-fit</code> 都不会用，连 <code>replaced element</code>都没听过，居然也能测出expert水平…但有进步总是比什么都不做强一些。</p>
+    <h1>利用Gitee免费创建图床-方便、快捷、稳定</h1>
+    <p>偷懒自己写博客的时候往往需要粘贴图片，但是目前我喜欢使用码云Gitee+工具PicGo，这样既免费，又稳定。</p>
 <blockquote>
-<p>object-fit 是用于控制可替换元素(replaced element<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element" target="_blank" rel="noopener">^2</a>)在容器中如何显示的属性<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit" target="_blank" rel="noopener">^1</a></p>
+<p>Gitee  码云(<em>gitee</em>.com)是 OSCHINA.NET 推出的代码托管平台,支持 Git 和 SVN,提供免费的私有仓库托管。目前已有近 400 万的开发者选择码云。</p>
+<p>PicGo 就是一个开源免费的图床工具，自动把本地图片转换成链接的一款工具，网络上有很多图床工具，就目前使用种类而言，PicGo 算得上一款比较优秀的图床工具。它是一款用 <code>Electron-vue</code> 开发的软件，可以支持微博，七牛云，腾讯云COS，又拍云，GitHub，阿里云OSS，SM.MS，imgur 等8种常用图床，功能强大，简单易用</p>
 </blockquote>
-<h2 id="可替换元素-replaced-element"><a href="#可替换元素-replaced-element" class="headerlink" title="可替换元素 replaced element"></a>可替换元素 replaced element</h2><p>可替换元素是独立于CSS的外部对象，其展现效果不由所继承的父文档css所控制，例如 <code>&lt;iframe&gt;</code> 本身有自己的样式，其样式不会受父文档中样式的影响</p>
-<h3 id="典型的可替换元素"><a href="#典型的可替换元素" class="headerlink" title="典型的可替换元素"></a>典型的可替换元素</h3><p>典型可替换元素有以下几种：</p>
+<h2 id="1-先注册码云创库账号"><a href="#1-先注册码云创库账号" class="headerlink" title="1.先注册码云创库账号"></a>1.先注册码云创库账号</h2><p><a href="https://gitee.com/signup?from=homepage" target="_blank" rel="noopener">点击前往码云免费注册</a> <img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200301145634.png" alt=""></p>
+<p>注册好账号后，需要创建一个公开的仓库用于存放你的图片</p>
+<p><img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200301150014.png" alt=""></p>
+<p><img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200301150332.png" alt=""></p>
+<p>创库创建好后我们就安装上传软件</p>
+<h2 id="2-安装PicGo"><a href="#2-安装PicGo" class="headerlink" title="2.安装PicGo"></a>2.安装PicGo</h2><p>可以前往官网下载（太慢了），</p>
 <ul>
-<li><code>&lt;iframe&gt;</code></li>
-<li><code>&lt;video&gt;</code></li>
-<li><code>&lt;embed&gt;</code></li>
-<li><code>&lt;img&gt;</code></li>
+<li>百度云盘（win）下载链接: <a href="https://pan.baidu.com/s/1J7LyiAhsNMbxInLTDbzXrw" target="_blank" rel="noopener">https://pan.baidu.com/s/1J7LyiAhsNMbxInLTDbzXrw</a> 提取码: k4kv</li>
+<li>Github： <a href="https://github.com/Molunerfinn/PicGo" target="_blank" rel="noopener">https://github.com/Molunerfinn/PicGo</a></li>
 </ul>
-<p>某些元素在特定情况下也被视为可替换元素，例如 <code>&lt;option&gt;</code>, <code>&lt;audio&gt;</code>, <code>&lt;canvas&gt;</code>, <code>&lt;object&gt;</code>, <code>&lt;applet&gt;</code>（这个我都不知道是啥）</p>
-<h2 id="CSS控制控制可替换元素的样式"><a href="#CSS控制控制可替换元素的样式" class="headerlink" title="CSS控制控制可替换元素的样式"></a>CSS控制控制可替换元素的样式</h2><p><code>object-fit</code> 控制可替换元素在容器中如何显示，有以下几种值，以图片做例子进行说明：</p>
+<p>下载下来后直接安装打开，打开软件我们进行软件图床设置，软件默认不提供Gitee图床，点击插件下载Gitee工具使用</p>
+<p><img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200301151010.png" alt=""></p>
+<p>插件安装成功后就进行图床配置-&gt;点击左边的<strong>图床设置</strong>-&gt;找到<strong>Gitee图床</strong>-&gt;会得到下面的设置选项</p>
 <ul>
-<li><code>fill</code> 不按物件本身的宽高比的填充，而是按容器的大小填充，会出现图片变形等情况</li>
-<li><code>cover</code> 在保持物件本身宽高比，填充整个容器大小</li>
-<li><code>contain</code> 保持物件宽高比，当容器宽高比与物件宽高比不同时，物件的宽或高只有其中一个与容器相等</li>
-<li><code>none</code> 保持物件宽高比，不缩放，直接填充，图片较大容器较小时，只截取部分图片</li>
-<li><code>scale-down</code> 保持物件宽高比，与 <code>none</code> 或 <code>contain</code> 其中物件显示较小时相同</li>
+<li><p>url：图床网站，这里写码云的主页 <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgitee.com" target="_blank" rel="noopener">https://gitee.com</a></p>
+</li>
+<li><p>owner：所有者，写上你的码云账号名，如果你不知道你的账号名，进入你刚才的仓库，浏览器url里面有</p>
+<p><img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200301151520.png" alt=""></p>
+</li>
+<li><p>repo：仓库名称，只要写上仓库名称就行，比如我自己的仓库images</p>
+</li>
+<li><p>path：写上路径，一般是img，<strong>这几个项都不用加“ / “符号</strong></p>
+</li>
+<li><p>token：需要获取的个人令牌，获取Token步骤：</p>
+<ul>
+<li><p>点击个人设置<img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200301151704.png" alt=""></p>
+</li>
+<li><p>找到私人令牌</p>
+<p><img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200301151815.png" alt=""></p>
+</li>
+<li><p>点击生成令牌</p>
+<p><img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200301151907.png" alt=""></p>
+</li>
+<li><p>选择一项即可</p>
+<p><img src="C:%5CUsers%5Cbeiie-fille%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1583047207497.png" alt="1583047207497"></p>
+</li>
+<li><p>最后复制token令牌</p>
+</li>
 </ul>
-<p><code>object-position</code> 控制在容器中的位置，类似 <code>bakcground-position</code></p>
-<p>一张图胜过千言万语<br><img src="https://user-images.githubusercontent.com/5300359/74955610-db787980-543f-11ea-911f-9ef0f30788ea.png" alt="image"></p>
+</li>
+<li><p>message：不用填</p>
+</li>
+</ul>
+<p>填写完成后的效果如下图：<img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200301152201.png" alt=""></p>
+<p>然后点击确定，跟设为默认即可，最后就是上传操作了去测试下吧</p>
+<p><img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200301152338.png" alt=""></p>
+<p>最后上传成功后回得到各种链接，选择Url链接在浏览器中测试成功</p>
 
   </article>
 </div>

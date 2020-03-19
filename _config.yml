@@ -1,0 +1,103 @@
+# Hexo Configuration
+## Docs: http://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: 一个拥有像素眼的后端工程师
+subtitle: 学习中的程序员
+description: Java是世界上第一好的语言😏
+author: XIAOANDX
+language: zh-CN
+timezone: Asia/Shanghai
+favicon: https://privateimage.xiaoandx.club/favicon.ico
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: https://xiaoandx.github.io/blog
+root: /blog/
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :year:month:day-:title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace:
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 0
+pagination_dir: page
+
+# Extensions
+## Plugins: http://hexo.io/plugins/
+## Themes: http://hexo.io/themes/
+theme: replica
+
+# Deployment
+## Docs: http://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repo: git@github.com:xiaoandx/blog.git
+  branch: gh-pages
+
+# Google Analytics
+ga: UA-52574938-4
+
+#marked setting for markdown
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true
+
+# gcs: 015579750388200492852:dnpv83myu4a
+baidutongji: 3b36a804196ebaf097793078cdc56d5a
+# disqus: hiitea-tech
+
+location: Cheng Du, China
+email: 2324671838@qq.com
+
+avatar: https://avatars1.githubusercontent.com/u/44764982?s=460&v=4
+social:
+  github: https://github.com/xiaoandx
+  # weibo: http://weibo.com/206663121
+  linkedin:
+
+# flagcounter_href: https://info.flagcounter.com/mx4Y
+# flagcounter_img_src: //s01.flagcounter.com/count/mx4Y/bg_FFFFFF/txt_000000/border_FFFFFF/columns_3/maxflags_9/viewers_3/labels_0/pageviews_1/flags_0/percent_0/

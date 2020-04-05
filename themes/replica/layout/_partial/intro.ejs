@@ -2,7 +2,7 @@
 config.social = config.social || {};
 theme.social = theme.social || {};
 var github = config.social.github || theme.social.github;
-var weibo = config.social.weibo || theme.social.weibo;
+var indexINk = config.social.indexINk || theme.social.indexINk;
 var linkedin = config.social.linkedin || theme.social.linkedin;
 var location = config.location || theme.location;
 var email = config.email || theme.email;
@@ -62,8 +62,8 @@ var avatar = config.avatar || theme.avatar || 'https://octodex.github.com/images
     <ul>
       <% if(github){ %>
       <li class="social-media-item"><a href="<%= github %>" target="_blank"><i class="fa fa-github"></i></a></li>
-      <% } if(weibo){ %>
-      <li class="social-media-item"><a href="<%= weibo %>" target="_blank"><i class="fa fa-weibo"></i></a></li>
+      <% } if(indexINk){ %>
+      <li class="social-media-item"><a href="<%= indexINk %>" target="_blank"><i class="fa fa-use"></i></a></li>
       <% } if(linkedin){ %>
       <li class="social-media-item"><a href="<%= linkedin %>" target="_blank"><i class="fa fa-linkedin"></i></a></li>
       <% } %>

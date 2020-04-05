@@ -2,7 +2,7 @@
 config.social = config.social || {};
 theme.social = theme.social || {};
 var github = config.social.github || theme.social.github;
-var weibo = config.social.weibo || theme.social.weibo;
+var indexINk = config.social.indexINk || theme.social.indexINk;
 var linkedin = config.social.linkedin || theme.social.linkedin;
 var location = config.location || theme.location;
 var url = config.url;
@@ -20,14 +20,14 @@ var flagcounter_img_src = config.flagcounter_img_src;
       <li><a href="<%= url %>">Home</a></li>
       <% if(github){ %>
       <li><a href="<%= github %>">Github</a></li>
-      <% }if(weibo){ %>
-      <li><a href="<%= weibo %>">Weibo</a></li>
+      <% }if(indexINk){ %>
+      <li><a href="<%= indexINk %>">简介</a></li>
       <% }if(linkedin){ %>
       <li><a href="<%= linkedin %>">Linkedin</a></li>
       <% } %>
     </ul>
     <div class="footer-theme-info">
-      by <a href="//github.com/xiaoandx">xiaoandx</a> ❤ Powered by Hexo
+      by <a href="//www.xiaoandx.club">xiaoandx</a> ❤ Powered by Hexo
     </div>
     </div>
     <% if(flagcounter_href){ %>

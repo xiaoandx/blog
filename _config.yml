@@ -15,7 +15,7 @@ favicon: https://privateimage.xiaoandx.club/favicon.ico
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://xiaoandx.github.io/blog
 root: /blog/
-permalink: :year/:month/:day/:title/
+permalink: article/:title.html
 permalink_defaults:
 
 # Directory
@@ -97,7 +97,7 @@ email: 2324671838@qq.com
 avatar: https://avatars1.githubusercontent.com/u/44764982?s=460&v=4
 social:
   github: https://github.com/xiaoandx
-  # weibo: http://weibo.com/206663121
+  indexINk: https://www.xiaoandx.club
   linkedin:
 
 # flagcounter_href: https://info.flagcounter.com/mx4Y

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.xiaoandx.club/article/springboot-package-jar.html</loc>
+    
+    <lastmod>2020-12-09T05:00:03.234Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.xiaoandx.club/article/code_annotation_docx.html</loc>
     
     <lastmod>2020-11-20T05:29:00.209Z</lastmod>

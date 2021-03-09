@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.xiaoandx.club/"/>
-  <updated>2021-01-02T08:06:40.580Z</updated>
+  <updated>2021-03-09T09:06:28.328Z</updated>
   <id>https://blog.xiaoandx.club/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jdk安装环境变量配置</title>
+    <link href="https://blog.xiaoandx.club/article/JDK_environment/"/>
+    <id>https://blog.xiaoandx.club/article/JDK_environment/</id>
+    <published>2021-03-08T16:00:00.000Z</published>
+    <updated>2021-03-09T09:06:28.328Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>​        教程针对windows用户，再学习与开发中需要进行安装jdk并配置环境变量相关注意事项</p></blockquote><h3 id="一、下载安装jdk（推荐下载jdk8）"><a href="#一、下载安装jdk（推荐下载jdk8）" class="headerlink" title="一、下载安装jdk（推荐下载jdk8）"></a>一、下载安装jdk（推荐下载jdk8）</h3><p>推荐下载地址(免费 快速)：<a href="http://www.sousou88.com/spec/java_openjdk.html">http://www.sousou88.com/spec/java_openjdk.html</a></p><p>下载成功后进行软件安装，注意：可以将<code>jdk</code> 、<code>jre</code> 安装再同一目录下</p><p><img src="https://i.loli.net/2021/03/09/Yo9VxDvJn82NMZ4.png" alt="image-20210309164347920"></p><blockquote><p>可以只用安装jdk  不安装jre</p></blockquote><h3 id="二、配置jdk编译环境"><a href="#二、配置jdk编译环境" class="headerlink" title="二、配置jdk编译环境"></a>二、配置jdk编译环境</h3><p>win10用户 -&gt; 我的电脑 -&gt; 属性(鼠标右键) -&gt; 高级系统设置(下图一) -&gt; 环境变量(下图二)</p><p><img src="https://i.loli.net/2021/03/09/H1MfUFZpltouL5k.png" alt="image-20210309164753498"></p><p><img src="https://i.loli.net/2021/03/09/fxdpLAOgGoc2DK4.png" alt="image-20210309164815657"></p><ol><li><h4 id="新建-环境变量-JAVA-HOME"><a href="#新建-环境变量-JAVA-HOME" class="headerlink" title="新建 环境变量 JAVA_HOME"></a>新建 环境变量 JAVA_HOME</h4></li></ol><p>变量名：JAVA_HOME</p><p>变量值：C:\Program Files\Java\jdk1.8.0_101\    （这里复制自己的安装jdk路径）</p><p><img src="https://i.loli.net/2021/03/09/ika8fDxZqOBStCl.png" alt="image-20210309165903194"></p><ol start="2"><li><h4 id="新增path环境变量"><a href="#新增path环境变量" class="headerlink" title="新增path环境变量"></a>新增path环境变量</h4></li></ol><p>新增环境路径：%JAVA_HOME%\bin</p><p><img src="https://i.loli.net/2021/03/09/Ais5yPzU6CK8rYJ.png" alt="image-20210309170006759"></p><ol start="3"><li><h4 id="新建ClassPath环境变量"><a href="#新建ClassPath环境变量" class="headerlink" title="新建ClassPath环境变量"></a>新建ClassPath环境变量</h4></li></ol><p>变量名：ClassPath</p><p>变量值：.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;%TOMCAT_HOME%\BIN</p><p><img src="https://i.loli.net/2021/03/09/EeTiU8xaW3ADktR.png" alt="image-20210309170132929"></p><h3 id="三、cmd测试jdk配置"><a href="#三、cmd测试jdk配置" class="headerlink" title="三、cmd测试jdk配置"></a>三、cmd测试jdk配置</h3><h4 id="1-测试java"><a href="#1-测试java" class="headerlink" title="1. 测试java"></a>1. 测试java</h4><p><img src="https://i.loli.net/2021/03/09/LcmXANHvYgdhKiw.png" alt="image-20210309170457083"></p><h4 id="2-测试javac"><a href="#2-测试javac" class="headerlink" title="2. 测试javac"></a>2. 测试javac</h4><p><img src="https://i.loli.net/2021/03/09/A2DekpNH8UEKCsS.png" alt="image-20210309170535212"></p><blockquote><p>如果出现测试javac 无上图结果则需要检查classPath环境变量</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;​        教程针对windows用户，再学习与开发中需要进行安装jdk并配置环境变量相关注意事项&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;一、下载安装jdk（推荐下载jdk8）&quot;&gt;&lt;a href=&quot;#一、下载安装jdk（推荐下载
+      
+    
+    </summary>
+    
+      <category term="技巧分享" scheme="https://blog.xiaoandx.club/categories/%E6%8A%80%E5%B7%A7%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="Java" scheme="https://blog.xiaoandx.club/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>python项目打包exe运行</title>
@@ -574,37 +602,6 @@
       <category term="baidu" scheme="https://blog.xiaoandx.club/tags/baidu/"/>
     
       <category term="Python" scheme="https://blog.xiaoandx.club/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git退回指定版本（本地）</title>
-    <link href="https://blog.xiaoandx.club/article/git-reset-hard/"/>
-    <id>https://blog.xiaoandx.club/article/git-reset-hard/</id>
-    <published>2020-04-02T16:00:00.000Z</published>
-    <updated>2020-11-12T12:22:06.824Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h3><blockquote><p>要退回指定版本需要知道对应版本的修订编码</p></blockquote><p>### </p><h3 id="获取修订编码"><a href="#获取修订编码" class="headerlink" title="获取修订编码"></a>获取修订编码</h3><ol><li>通过git log 获取commint 修订编码日志<img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200403103601.png" alt></li></ol><p>获得日志后可得到对应的修订版本号如：<code>665089975ba15e98fa2a674facc64c71ed55f685</code></p><ol start="2"><li>通过远程仓库的提交历史获取修订版本号<img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200403103804.png" alt></li></ol><h3 id="本地退回版本"><a href="#本地退回版本" class="headerlink" title="本地退回版本"></a>本地退回版本</h3><blockquote><p>注意：回退版本时需要注意分支，以免将其他分支回退了。</p></blockquote><p>输入 git reset –hard &lt;修订版本号&gt;</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard &lt;修订版本号&gt;</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200403104103.png" alt></p><h3 id="回退远程仓库"><a href="#回退远程仓库" class="headerlink" title="回退远程仓库"></a>回退远程仓库</h3><blockquote><p>因为本地仓库已经版本回滚了，如果需要远程仓库的版本与本地一致比，需要强行push</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -f -u origin master</span><br></pre></td></tr></table></figure><p>注意：如果回退的指定分支需将<code>master</code> 修改对应分支如： <code>dev</code></p><h3 id="查看远程仓库是否一致"><a href="#查看远程仓库是否一致" class="headerlink" title="查看远程仓库是否一致"></a>查看远程仓库是否一致</h3><p><img src="https://gitee.com//xiaoandx_my/images/raw/master/img/20200403104859.png" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;说明：&quot;&gt;&lt;a href=&quot;#说明：&quot; class=&quot;headerlink&quot; title=&quot;说明：&quot;&gt;&lt;/a&gt;说明：&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;要退回指定版本需要知道对应版本的修订编码&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;### &lt;/p&gt;
-&lt;h
-      
-    
-    </summary>
-    
-      <category term="实用工具" scheme="https://blog.xiaoandx.club/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="git" scheme="https://blog.xiaoandx.club/tags/git/"/>
-    
-      <category term="reset" scheme="https://blog.xiaoandx.club/tags/reset/"/>
     
   </entry>
   

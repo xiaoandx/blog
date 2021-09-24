@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>数据结构与算法实验报告 | 大眼睛工程师</title>
+  <meta name="description" content="\数据结构与算法实验报告** \实验项目：线性表的基本操作** 一、 \实验目的**\1. 理解线性表的类型定义； \2. 掌握理解线性表的顺序表示何实现； \3. 掌握理解线性表的链式表示和实现； 二、 \实验任务**\1. 创建线性表结构； \2. 完成线性表的顺序操作（初始化、插入、删除）； \3. 完成线性表的链式操作（初始化、插入、删除、遍历、等）； \4. 利用约瑟夫循环单链表解决排队">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法实验报告">
+<meta property="og:url" content="https://blog.xiaoandx.club/article/linear_table_operation/index.html">
+<meta property="og:site_name" content="一个拥有像素眼的后端工程师">
+<meta property="og:description" content="\数据结构与算法实验报告** \实验项目：线性表的基本操作** 一、 \实验目的**\1. 理解线性表的类型定义； \2. 掌握理解线性表的顺序表示何实现； \3. 掌握理解线性表的链式表示和实现； 二、 \实验任务**\1. 创建线性表结构； \2. 完成线性表的顺序操作（初始化、插入、删除）； \3. 完成线性表的链式操作（初始化、插入、删除、遍历、等）； \4. 利用约瑟夫循环单链表解决排队">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/4pNv6PtMCdefoJn.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/LvcfJkOsCe3hATg.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/QUxM5ZtPL4DC1ok.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/6KCAG3XnthVeLvS.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/Gp26RlBy9YiQwud.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/O1LwC8ZbEVWxnkS.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/mW8hg9UboEwfcGX.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/OfaAGm6dcPwJv8R.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/B5LA3gwVpJtN4Sv.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/VCTWLJ5D319SE7p.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/cZOd8wReK9Bbzqu.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/1TJOF7tXeZgzn5Q.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/gFbOrpGhB9ZeXiz.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/ZCJcvQfDBhOHxIU.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/DlvYk9Grfox5d2e.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/yruUv4PYZpRTMl2.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/YSCDIVWmP6JAtHk.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/aKOv2pw8oe1tdsP.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/DGbaMOndh4LXSrT.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/gPXeSCioR7N98a5.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/EoBSKrd3nNYzQyC.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/sgkMabm8GDQlWyp.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/FtjwVKN8bSgyTpW.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/LubqDEdwZHeRyT7.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/nWuMhQr3FNq49yt.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/SsyX1FPg7eCZLup.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/gxbiUDIrs5FWzjq.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/7WDzoIykalAK4BC.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/HoMKTmDs9tFXdJB.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/B17MeILKvzmZ5Eq.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/Hbqw3mv1RzWVgcD.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/qeXiIah6tyA5mlO.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/Wc74ZiGx5JQyzYX.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/RqKjgSmXHBEnh43.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/tW2eYM4KATwZLFi.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/H5rwkKuImasAQBx.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/txbwYrc8qTBkf7s.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/YdAIBqPQtRG7j95.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/xISkPEK9izWDdAp.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/SILbCr59MVxgBEW.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/aK7Q4deZrLt6gB5.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/04/VXD17JSFUkoQGOc.jpg">
+<meta property="article:published_time" content="2020-10-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-11-12T12:25:17.313Z">
+<meta property="article:author" content="XIAOANDX">
+<meta property="article:tag" content="数据结构和算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/10/04/4pNv6PtMCdefoJn.jpg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://blog.xiaoandx.club/article/linear_table_operation/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="一个拥有像素眼的后端工程师" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/xiaoandx" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">WEI.ZHOU</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">大眼睛工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/xiaoandx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.xiaoandx.club" target="_blank" title="Resume" data-toggle=tooltip data-placement=top><i class="icon icon-resume"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>2021年新开始新起点</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a><span class="category-list-count">103</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB/">代码分享</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">学习资料</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">实用工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E5%B7%A7%E5%88%86%E4%BA%AB/">技巧分享</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%A5%E9%94%99%E6%80%BB%E7%BB%93/">报错总结</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-or-C/" rel="tag">C or C++</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">100</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/" rel="tag">JavaWeb</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NodeJs/" rel="tag">NodeJs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pc/" rel="tag">Pc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/" rel="tag">RESTful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/" rel="tag">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WPS%E5%8E%BB%E5%B9%BF%E5%91%8A/" rel="tag">WPS去广告</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baidu/" rel="tag">baidu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free/" rel="tag">free</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitignore/" rel="tag">gitignore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/object-fit/" rel="tag">object-fit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replaced-element/" rel="tag">replaced element</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reset/" rel="tag">reset</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" rel="tag">windows截图软件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" rel="tag">前端知识</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" rel="tag">截图软件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BE%A4%E5%8F%91%E9%82%AE%E4%BB%B6/" rel="tag">群发邮件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%AE%BA/" rel="tag">软件工程概论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/" rel="tag">面试指南</a><span class="tag-list-count">103</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/API/" style="font-size: 13px;">API</a> <a href="/tags/C/" style="font-size: 13px;">C</a> <a href="/tags/C-or-C/" style="font-size: 13.78px;">C or C++</a> <a href="/tags/C/" style="font-size: 13px;">C++</a> <a href="/tags/CSS/" style="font-size: 13px;">CSS</a> <a href="/tags/IDEA/" style="font-size: 13px;">IDEA</a> <a href="/tags/Java/" style="font-size: 13.89px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 13.56px;">JavaWeb</a> <a href="/tags/Linux/" style="font-size: 13.11px;">Linux</a> <a href="/tags/Maven/" style="font-size: 13px;">Maven</a> <a href="/tags/NodeJs/" style="font-size: 13px;">NodeJs</a> <a href="/tags/Pc/" style="font-size: 13px;">Pc</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/RESTful/" style="font-size: 13px;">RESTful</a> <a href="/tags/Spring/" style="font-size: 13px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 13.22px;">SpringBoot</a> <a href="/tags/VMware/" style="font-size: 13px;">VMware</a> <a href="/tags/WPS%E5%8E%BB%E5%B9%BF%E5%91%8A/" style="font-size: 13px;">WPS去广告</a> <a href="/tags/Web/" style="font-size: 13px;">Web</a> <a href="/tags/baidu/" style="font-size: 13px;">baidu</a> <a href="/tags/free/" style="font-size: 13.56px;">free</a> <a href="/tags/git/" style="font-size: 13.67px;">git</a> <a href="/tags/gitignore/" style="font-size: 13px;">gitignore</a> <a href="/tags/object-fit/" style="font-size: 13px;">object-fit</a> <a href="/tags/replaced-element/" style="font-size: 13px;">replaced element</a> <a href="/tags/reset/" style="font-size: 13px;">reset</a> <a href="/tags/shell/" style="font-size: 13.11px;">shell</a> <a href="/tags/windows%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" style="font-size: 13px;">windows截图软件</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 13.44px;">前端</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" style="font-size: 13px;">前端知识</a> <a href="/tags/%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" style="font-size: 13px;">截图软件</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 13.11px;">数据结构和算法</a> <a href="/tags/%E7%BE%A4%E5%8F%91%E9%82%AE%E4%BB%B6/" style="font-size: 13px;">群发邮件</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13px;">设计模式</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%AE%BA/" style="font-size: 13px;">软件工程概论</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/" style="font-size: 14px;">面试指南</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">103</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/article/hello-world/" class="title">Hello World</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-09-24T06:13:30.425Z" itemprop="datePublished">2021-09-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NodeJs/">NodeJs</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202109240001/" class="title">NodeJs-koa2-框架学习</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-09-23T16:00:00.000Z" itemprop="datePublished">2021-09-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202105031017/" class="title">05-String s = &#34;java&#34;与String s = new String(&#34;java&#34;)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202105031018/" class="title">06-String，StringBuffer，StringBuilder区别</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202105031019/" class="title">07-接口和抽象类的区别</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="toc-number">1.</span> <span class="toc-text">一、 \实验目的**</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E5%AE%9E%E9%AA%8C%E4%BB%BB%E5%8A%A1"><span class="toc-number">2.</span> <span class="toc-text">二、 \实验任务**</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E5%AE%9E%E9%AA%8C%E4%BB%AA%E5%99%A8%E8%AE%BE%E5%A4%87"><span class="toc-number">3.</span> <span class="toc-text">三、 \实验仪器设备**</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E5%AE%9E%E9%AA%8C%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="toc-number">4.</span> <span class="toc-text">四、 \实验主要内容**</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-number">4.1.</span> <span class="toc-text">1. \创建线性表结构**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%A1%BA%E5%BA%8F%E7%BA%BF%E6%80%A7%E8%A1%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">4.2.</span> <span class="toc-text">2. \顺序线性表操作**</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%93%8D%E4%BD%9C"><span class="toc-number">4.2.1.</span> <span class="toc-text">2.1 \初始化操作**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE%E5%85%83%E7%B4%A0%E6%93%8D%E4%BD%9C"><span class="toc-number">4.2.2.</span> <span class="toc-text">2.2 \插入数据元素操作**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%85%83%E7%B4%A0"><span class="toc-number">4.2.3.</span> <span class="toc-text">2.3 \删除数据元素**</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%93%8D%E4%BD%9C"><span class="toc-number">4.2.3.1.</span> <span class="toc-text">3.1 \初始化操作**</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E9%81%8D%E5%8E%86%E6%89%93%E5%8D%B0%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="toc-number">4.2.4.</span> <span class="toc-text">3.2 \遍历打印线性表**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE%E5%85%83%E7%B4%A0"><span class="toc-number">4.2.5.</span> <span class="toc-text">3.3 \插入数据元素**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%85%83%E7%B4%A0"><span class="toc-number">4.2.6.</span> <span class="toc-text">3.4 \删除数据元素**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA"><span class="toc-number">4.2.7.</span> <span class="toc-text">3.5 \判断链表是否为空**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-%E8%BF%94%E5%9B%9E-%E6%8C%87%E5%AE%9A-%E6%95%B0%E6%8D%AE%E5%9C%A8%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">4.2.8.</span> <span class="toc-text">3.6 \返回****指定****数据在链表中的位置****</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-%E9%94%80%E6%AF%81%E6%95%B0%E6%8D%AE%E9%93%BE%E8%A1%A8"><span class="toc-number">4.2.9.</span> <span class="toc-text">3.7 \销毁数据链表**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-%E6%B8%85%E7%A9%BA%E9%93%BE%E8%A1%A8"><span class="toc-number">4.2.10.</span> <span class="toc-text">3.8 \清空链表**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-9-%E5%88%A4%E6%96%AD%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE%E9%93%BE%E8%A1%A8%E9%95%BF%E5%BA%A6"><span class="toc-number">4.2.11.</span> <span class="toc-text">3.9 \判断返回数据链表长度**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-10-%E8%8E%B7%E5%8F%96%E9%93%BE%E8%A1%A8%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-number">4.2.12.</span> <span class="toc-text">3.10 \获取链表指定位置的数据**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-11-%E6%9F%A5%E6%89%BE%E6%8C%87%E5%AE%9A%E5%85%83%E7%B4%A0%E7%9A%84%E7%9A%84%E5%89%8D%E9%A9%B1%E5%85%83%E7%B4%A0"><span class="toc-number">4.2.13.</span> <span class="toc-text">3.11 \查找指定元素的的前驱元素**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-12-%E6%9F%A5%E6%89%BE%E6%8C%87%E5%AE%9A%E5%85%83%E7%B4%A0%E7%9A%84%E7%9A%84%E5%90%8E%E7%BD%AE%E5%85%83%E7%B4%A0"><span class="toc-number">4.2.14.</span> <span class="toc-text">3.12 \查找指定元素的的后置元素**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="toc-number">4.2.15.</span> <span class="toc-text">4.1 \思路分析**</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">4.3.</span> <span class="toc-text">五、 \实验结果**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%A1%BA%E5%BA%8F%E7%BA%BF%E6%80%A7%E8%A1%A8%E6%93%8D%E4%BD%9C%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">4.4.</span> <span class="toc-text">1. \顺序线性表操作实验结果**</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E5%88%9D%E5%A7%8B%E5%8C%96%E3%80%81%E6%8F%92%E5%85%A5%E3%80%81%E9%81%8D%E5%8E%86"><span class="toc-number">4.4.1.</span> <span class="toc-text">1.1 \初始化、插入、遍历**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-number">4.4.2.</span> <span class="toc-text">1.2 \删除指定位置的数据**</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%93%BE%E5%BC%8F%E7%BA%BF%E6%80%A7%E8%A1%A8%E6%93%8D%E4%BD%9C%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">4.5.</span> <span class="toc-text">2. \链式线性表操作实验结果**</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%88%9D%E5%A7%8B%E5%8C%96%E3%80%81%E6%8F%92%E5%85%A5%E3%80%81%E9%81%8D%E5%8E%86"><span class="toc-number">4.5.1.</span> <span class="toc-text">2.1 \初始化、插入、遍历**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="toc-number">4.5.2.</span> <span class="toc-text">2.2 \删除操作**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E8%8E%B7%E5%8F%96%E9%93%BE%E8%A1%A8%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-number">4.5.3.</span> <span class="toc-text">2.3 \获取链表的长度**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E6%B8%85%E7%A9%BA%E9%94%80%E6%AF%81%E9%93%BE%E5%BC%8F%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="toc-number">4.5.4.</span> <span class="toc-text">2.4 \清空销毁链式线性表**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E6%95%B0%E6%8D%AE%E7%9A%84%E5%89%8D%E9%A9%B1%E8%8A%82%E7%82%B9"><span class="toc-number">4.5.5.</span> <span class="toc-text">2.5 \获取指定数据的前驱节点**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E6%95%B0%E6%8D%AE%E7%9A%84%E5%90%8E%E7%BD%AE%E8%8A%82%E7%82%B9"><span class="toc-number">4.5.6.</span> <span class="toc-text">2.6 \获取指定数据的后置节点**</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E8%8A%82%E7%82%B9%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-number">4.5.7.</span> <span class="toc-text">2.7 \获取指定节点的数据**</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8E%92%E9%98%9F%E6%8A%A5%E6%95%B0%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">4.6.</span> <span class="toc-text">3. \排队报数实验结果**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93"><span class="toc-number">4.7.</span> <span class="toc-text">六、 \实验总结**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81-%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81"><span class="toc-number">4.8.</span> <span class="toc-text">七、 \实验代码**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%A1%BA%E5%BA%8F%E7%BA%BF%E6%80%A7%E8%A1%A8%E5%AE%9E%E9%AA%8C%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="toc-number">4.9.</span> <span class="toc-text">1. \顺序线性表实验源代码**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%93%BE%E5%BC%8F%E7%BA%BF%E6%80%A7%E8%A1%A8%E5%AE%9E%E9%AA%8C%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="toc-number">4.10.</span> <span class="toc-text">2. \链式线性表实验源代码**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BA%A6%E7%91%9F%E5%A4%AB%E5%BE%AA%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8%E8%A7%A3%E5%86%B3%E6%8E%92%E9%98%9F%E6%8A%A5%E6%95%B0%E5%AE%9E%E9%AA%8C%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="toc-number">4.11.</span> <span class="toc-text">3. \约瑟夫循环单链表解决排队报数实验源代码**</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-linear_table_operation" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构与算法实验报告
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/article/linear_table_operation/" class="article-date">
+	  <time datetime="2020-10-02T16:00:00.000Z" itemprop="datePublished">2020-10-03</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/article/linear_table_operation/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p><strong><em>\</em>数据结构与算法实验报告**</strong></p>
+<p><strong><em>\</em>实验项目：线性表的基本操作**</strong></p>
+<h2 id="一、-实验目的"><a href="#一、-实验目的" class="headerlink" title="一、 \实验目的**"></a><strong>一、</strong> <strong><em>\</em>实验目的**</strong></h2><p>\1. 理解线性表的类型定义；</p>
+<p>\2. 掌握理解线性表的顺序表示何实现；</p>
+<p>\3. 掌握理解线性表的链式表示和实现；</p>
+<h2 id="二、-实验任务"><a href="#二、-实验任务" class="headerlink" title="二、 \实验任务**"></a><strong>二、</strong> <strong><em>\</em>实验任务**</strong></h2><p>\1. 创建线性表结构；</p>
+<p>\2. 完成线性表的顺序操作（初始化、插入、删除）；</p>
+<p>\3. 完成线性表的链式操作（初始化、插入、删除、遍历、等）；</p>
+<p>\4. 利用约瑟夫循环单链表解决排队报数问题；</p>
+<h2 id="三、-实验仪器设备"><a href="#三、-实验仪器设备" class="headerlink" title="三、 \实验仪器设备**"></a><strong>三、</strong> <strong><em>\</em>实验仪器设备**</strong></h2><table>
+<thead>
+<tr>
+<th>工作任务</th>
+<th>所用工具或设备</th>
+<th>套数</th>
+<th>操作要领和注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使用软件</td>
+<td>Visual Studio Code</td>
+<td>1</td>
+<td>注意C程序的运行及保存</td>
+</tr>
+<tr>
+<td>使用系统</td>
+<td>Windows7</td>
+<td>1</td>
+<td>使用完后拷贝源码并关机</td>
+</tr>
+</tbody>
+</table>
+<h2 id="四、-实验主要内容"><a href="#四、-实验主要内容" class="headerlink" title="四、 \实验主要内容**"></a><strong>四、</strong> <strong><em>\</em>实验主要内容**</strong></h2><h3 id="1-创建线性表结构"><a href="#1-创建线性表结构" class="headerlink" title="1. \创建线性表结构**"></a><strong>1.</strong> <strong><em>\</em>创建线性表结构**</strong></h3><p>​    1.1 线性表是最常用且简单的一种数据结构。线性表是N个数据元素的有限序列如图4.1.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/4pNv6PtMCdefoJn.jpg" alt="img"> </p>
+<p>图4.1.1</p>
+<p>1.2 顺序线性表则是按照一定的地址顺序分配对应的地址空间如图4.1.2.1所示具体创建结构如图4.1.2.2所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/LvcfJkOsCe3hATg.jpg" alt="img"> </p>
+<p>图4.1.2.1</p>
+<p>顺序线性表结构</p>
+<p><img src="https://i.loli.net/2020/10/04/QUxM5ZtPL4DC1ok.jpg" alt="img"> </p>
+<p>图4.1.2.2</p>
+<p>1.3 链式线性表则是用一组任意的储存单元储存下一个数据元素的地址如图4.1.3.1所示具体创建结构如图4.1.3.2所示。</p>
+<p>链式线性表</p>
+<p><img src="https://i.loli.net/2020/10/04/6KCAG3XnthVeLvS.jpg" alt="img"> </p>
+<p>图4.1.3.1</p>
+<p>链式线性表结构</p>
+<p><img src="https://i.loli.net/2020/10/04/Gp26RlBy9YiQwud.jpg" alt="img"> </p>
+<p>图4.1.3.2</p>
+<h3 id="2-顺序线性表操作"><a href="#2-顺序线性表操作" class="headerlink" title="2. \顺序线性表操作**"></a><strong>2.</strong> <strong><em>\</em>顺序线性表操作**</strong></h3><h4 id="2-1-初始化操作"><a href="#2-1-初始化操作" class="headerlink" title="2.1 \初始化操作**"></a><strong>2.1</strong> <strong><em>\</em>初始化操作**</strong></h4><p>初始化需要在在内存中分配一个数据元素空间设置默认空间大小</p>
+<p>和其实际存储的长度如图2.1.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/O1LwC8ZbEVWxnkS.jpg" alt="img"> </p>
+<p><img src="https://i.loli.net/2020/10/04/mW8hg9UboEwfcGX.jpg" alt="img"> </p>
+<p>图2.1.1</p>
+<h4 id="2-2-插入数据元素操作"><a href="#2-2-插入数据元素操作" class="headerlink" title="2.2 \插入数据元素操作**"></a><strong>2.2</strong> <strong><em>\</em>插入数据元素操作**</strong></h4><p>需要判断其插入位置的前后是否已经存在数据表，如果存在需要进行数据移动等操作如图2.2.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/OfaAGm6dcPwJv8R.jpg" alt="img"> </p>
+<p><img src="https://i.loli.net/2020/10/04/B5LA3gwVpJtN4Sv.jpg" alt="img"> </p>
+<p>图2.2.1</p>
+<h4 id="2-3-删除数据元素"><a href="#2-3-删除数据元素" class="headerlink" title="2.3 \删除数据元素**"></a><strong>2.3</strong> <strong><em>\</em>删除数据元素**</strong></h4><p>需要判断删除位置是否存在数据，如果存在，在找到该位置然后</p>
+<p>后面的数据向前赋值，并改变线性表的实际数据长度（在其基础上减一）如图2.3.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/VCTWLJ5D319SE7p.jpg" alt="img"> </p>
+<p><img src="https://i.loli.net/2020/10/04/cZOd8wReK9Bbzqu.jpg" alt="img"> </p>
+<p>图2.3.1</p>
+<p><strong>3.</strong> <strong><em>\</em>链式线性表操作**</strong></p>
+<h5 id="3-1-初始化操作"><a href="#3-1-初始化操作" class="headerlink" title="3.1 \初始化操作**"></a><strong>3.1</strong> <strong><em>\</em>初始化操作**</strong></h5><p>初始化链表，需要在内存中分配一个空间作为线性表的头指针，</p>
+<p>并将头指针的地址（L.next）设置为NULL，并通过返回操作状态，1成功；0失败来作为判定条件。如图3.1.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/1TJOF7tXeZgzn5Q.jpg" alt="img"> </p>
+<p><img src="https://i.loli.net/2020/10/04/gFbOrpGhB9ZeXiz.jpg" alt="img"> </p>
+<p>图3.1.1</p>
+<h4 id="3-2-遍历打印线性表"><a href="#3-2-遍历打印线性表" class="headerlink" title="3.2 \遍历打印线性表**"></a><strong>3.2</strong> <strong><em>\</em>遍历打印线性表**</strong></h4><p>遍历打印，需要判断线性表中的元素的地址储存区域中是否包含下一个数据元素，如果不存在就结束遍历如图3.2.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/ZCJcvQfDBhOHxIU.jpg" alt="img"> </p>
+<p><img src="https://i.loli.net/2020/10/04/DlvYk9Grfox5d2e.jpg" alt="img"> </p>
+<p>图3.2.1</p>
+<h4 id="3-3-插入数据元素"><a href="#3-3-插入数据元素" class="headerlink" title="3.3 \插入数据元素**"></a><strong>3.3</strong> <strong><em>\</em>插入数据元素**</strong></h4><p>插入数据元素时，需要判断是否存在该位置，如果可以下面就需要找到对应位置；判断该位置是否（Ln.next）指向下一个数据元素，没有则需要进行两个数据元素的位置指向如图3.3.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/yruUv4PYZpRTMl2.jpg" alt="img"> </p>
+<p><img src="https://i.loli.net/2020/10/04/YSCDIVWmP6JAtHk.jpg" alt="img"> </p>
+<p>图3.3.1</p>
+<h4 id="3-4-删除数据元素"><a href="#3-4-删除数据元素" class="headerlink" title="3.4 \删除数据元素**"></a><strong>3.4</strong> <strong><em>\</em>删除数据元素**</strong></h4><p>删除数据元素时也需要判断是否该位置有数据；删除数据元素就重要就是找到指定位置的数据元素，然后将需要删除的数据元素的地址指向重新指向，前元素指向删除元素的next如图3.4.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/aKOv2pw8oe1tdsP.jpg" alt="img"> </p>
+<p><img src="https://i.loli.net/2020/10/04/DGbaMOndh4LXSrT.jpg" alt="img"> </p>
+<p>图3.4.1</p>
+<h4 id="3-5-判断链表是否为空"><a href="#3-5-判断链表是否为空" class="headerlink" title="3.5 \判断链表是否为空**"></a><strong>3.5</strong> <strong><em>\</em>判断链表是否为空**</strong></h4><p>直接判断头指针是否指向下一个元素，没有则为空如图3.5.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/gPXeSCioR7N98a5.jpg" alt="img"> </p>
+<p><img src="https://i.loli.net/2020/10/04/EoBSKrd3nNYzQyC.jpg" alt="img"> </p>
+<p>图3.5.1</p>
+<h4 id="3-6-返回-指定-数据在链表中的位置"><a href="#3-6-返回-指定-数据在链表中的位置" class="headerlink" title="3.6 \返回****指定****数据在链表中的位置****"></a><strong>3.6</strong> <strong><em>\</em>返回*<em>**</em></strong>*指定*<strong>**</strong>*数据在链表中的位置****</h4><p>需要将查询值与链表线性表中的每一位数据元素中的数据进行比对，发现相同就返回对应的位置；可是设置一个计数器，将最先找的元素位置返回如图3.6.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/sgkMabm8GDQlWyp.jpg" alt="img"> </p>
+<p><img src="https://i.loli.net/2020/10/04/FtjwVKN8bSgyTpW.jpg" alt="img"> </p>
+<p>图3.6.1</p>
+<h4 id="3-7-销毁数据链表"><a href="#3-7-销毁数据链表" class="headerlink" title="3.7 \销毁数据链表**"></a><strong>3.7</strong> <strong><em>\</em>销毁数据链表**</strong></h4><p>销毁链表线性表，需要通过循环将链表中的所有数据元素节点都销毁（free）并且还要销毁头节点如图3.7.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/LubqDEdwZHeRyT7.jpg" alt="img"> </p>
+<p><img src="https://i.loli.net/2020/10/04/nWuMhQr3FNq49yt.jpg" alt="img"> </p>
+<p>图3.7.1</p>
+<h4 id="3-8-清空链表"><a href="#3-8-清空链表" class="headerlink" title="3.8 \清空链表**"></a><strong>3.8</strong> <strong><em>\</em>清空链表**</strong></h4><p>清空链表，需要将头节点后面的所有结点销毁，但是保留头节点，如图3.8.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/SsyX1FPg7eCZLup.jpg" alt="img"> </p>
+<p><img src="https://i.loli.net/2020/10/04/gxbiUDIrs5FWzjq.jpg" alt="img"> </p>
+<p>图3.8.1</p>
+<h4 id="3-9-判断返回数据链表长度"><a href="#3-9-判断返回数据链表长度" class="headerlink" title="3.9 \判断返回数据链表长度**"></a><strong>3.9</strong> <strong><em>\</em>判断返回数据链表长度**</strong></h4><p>需要判断长度，通过循环与计数器结合，来判断线性表链表的实际长度，不包括头指针如图3.9.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/7WDzoIykalAK4BC.jpg" alt="img"> </p>
+<p>图3.9.1</p>
+<h4 id="3-10-获取链表指定位置的数据"><a href="#3-10-获取链表指定位置的数据" class="headerlink" title="3.10 \获取链表指定位置的数据**"></a><strong>3.10</strong> <strong><em>\</em>获取链表指定位置的数据**</strong></h4><p>先通过循环计数器找到指定数据节点，然后将该节点的对于的数据返回如图3.10.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/HoMKTmDs9tFXdJB.jpg" alt="img"> </p>
+<p>图3.10.1</p>
+<h4 id="3-11-查找指定元素的的前驱元素"><a href="#3-11-查找指定元素的的前驱元素" class="headerlink" title="3.11 \查找指定元素的的前驱元素**"></a><strong>3.11</strong> <strong><em>\</em>查找指定元素的的前驱元素**</strong></h4><p>通过两个交替变量循环，再返回前驱的地址如图3.11.1所示。</p>
+<p><img src="https://i.loli.net/2020/10/04/B17MeILKvzmZ5Eq.jpg" alt="img"> </p>
+<p>图3.11.1</p>
+<h4 id="3-12-查找指定元素的的后置元素"><a href="#3-12-查找指定元素的的后置元素" class="headerlink" title="3.12 \查找指定元素的的后置元素**"></a><strong>3.12</strong> <strong><em>\</em>查找指定元素的的后置元素**</strong></h4><p>通过两个交替变量循环，再返回后置的地址如图3.11.1所示</p>
+<p><img src="https://i.loli.net/2020/10/04/Hbqw3mv1RzWVgcD.jpg" alt="img"> </p>
+<p>图3.12.1</p>
+<p><strong>4.</strong> <strong><em>\</em>利用约瑟夫循环单链表解决排队报数问题**</strong></p>
+<h4 id="4-1-思路分析"><a href="#4-1-思路分析" class="headerlink" title="4.1 \思路分析**"></a><strong>4.1</strong> <strong><em>\</em>思路分析**</strong></h4><p>有n个人，编号为1，2，3…counts围成一个圆圈，按照顺时针方向从编号为key的人</p>
+<p>开始报数，报数为number的人出列，她的下一个人重新开始报数，数到number的人出列，如此重复下去，知道所有人都出列，编写一个算法，要求输入counts,number,key按照出列的顺序输出对应的值</p>
+<p>example:</p>
+<p>8,1,2,3,4,5,6,7  counts=8,key=2,number=3</p>
+<p>则按照输出的数值及编号为：4 7 2 6 3 1 5</p>
+<p>​    </p>
+<h3 id="五、-实验结果"><a href="#五、-实验结果" class="headerlink" title="五、 \实验结果**"></a><strong>五、</strong> <strong><em>\</em>实验结果**</strong></h3><h3 id="1-顺序线性表操作实验结果"><a href="#1-顺序线性表操作实验结果" class="headerlink" title="1. \顺序线性表操作实验结果**"></a><strong>1.</strong> <strong><em>\</em>顺序线性表操作实验结果**</strong></h3><h4 id="1-1-初始化、插入、遍历"><a href="#1-1-初始化、插入、遍历" class="headerlink" title="1.1 \初始化、插入、遍历**"></a><strong>1.1</strong> <strong><em>\</em>初始化、插入、遍历**</strong></h4><p><img src="https://i.loli.net/2020/10/04/qeXiIah6tyA5mlO.jpg" alt="img"> </p>
+<h4 id="1-2-删除指定位置的数据"><a href="#1-2-删除指定位置的数据" class="headerlink" title="1.2 \删除指定位置的数据**"></a><strong>1.2</strong> <strong><em>\</em>删除指定位置的数据**</strong></h4><p><img src="https://i.loli.net/2020/10/04/Wc74ZiGx5JQyzYX.jpg" alt="img"> </p>
+<h3 id="2-链式线性表操作实验结果"><a href="#2-链式线性表操作实验结果" class="headerlink" title="2. \链式线性表操作实验结果**"></a><strong>2.</strong> <strong><em>\</em>链式线性表操作实验结果**</strong></h3><h4 id="2-1-初始化、插入、遍历"><a href="#2-1-初始化、插入、遍历" class="headerlink" title="2.1 \初始化、插入、遍历**"></a><strong>2.1</strong> <strong><em>\</em>初始化、插入、遍历**</strong></h4><p><img src="https://i.loli.net/2020/10/04/RqKjgSmXHBEnh43.jpg" alt="img"> </p>
+<h4 id="2-2-删除操作"><a href="#2-2-删除操作" class="headerlink" title="2.2 \删除操作**"></a><strong>2.2</strong> <strong><em>\</em>删除操作**</strong></h4><p><img src="https://i.loli.net/2020/10/04/tW2eYM4KATwZLFi.jpg" alt="img"> </p>
+<h4 id="2-3-获取链表的长度"><a href="#2-3-获取链表的长度" class="headerlink" title="2.3 \获取链表的长度**"></a><strong>2.3</strong> <strong><em>\</em>获取链表的长度**</strong></h4><p><img src="https://i.loli.net/2020/10/04/H5rwkKuImasAQBx.jpg" alt="img"> </p>
+<h4 id="2-4-清空销毁链式线性表"><a href="#2-4-清空销毁链式线性表" class="headerlink" title="2.4 \清空销毁链式线性表**"></a><strong>2.4</strong> <strong><em>\</em>清空销毁链式线性表**</strong></h4><p><img src="https://i.loli.net/2020/10/04/txbwYrc8qTBkf7s.jpg" alt="img"> </p>
+<p><img src="https://i.loli.net/2020/10/04/YdAIBqPQtRG7j95.jpg" alt="img"> </p>
+<h4 id="2-5-获取指定数据的前驱节点"><a href="#2-5-获取指定数据的前驱节点" class="headerlink" title="2.5 \获取指定数据的前驱节点**"></a><strong>2.5</strong> <strong><em>\</em>获取指定数据的前驱节点**</strong></h4><p><img src="https://i.loli.net/2020/10/04/xISkPEK9izWDdAp.jpg" alt="img"> </p>
+<h4 id="2-6-获取指定数据的后置节点"><a href="#2-6-获取指定数据的后置节点" class="headerlink" title="2.6 \获取指定数据的后置节点**"></a><strong>2.6</strong> <strong><em>\</em>获取指定数据的后置节点**</strong></h4><p><img src="https://i.loli.net/2020/10/04/SILbCr59MVxgBEW.jpg" alt="img"> </p>
+<h4 id="2-7-获取指定节点的数据"><a href="#2-7-获取指定节点的数据" class="headerlink" title="2.7 \获取指定节点的数据**"></a><strong>2.7</strong> <strong><em>\</em>获取指定节点的数据**</strong></h4><p><img src="https://i.loli.net/2020/10/04/aK7Q4deZrLt6gB5.jpg" alt="img"> </p>
+<h3 id="3-排队报数实验结果"><a href="#3-排队报数实验结果" class="headerlink" title="3. \排队报数实验结果**"></a><strong>3.</strong> <strong><em>\</em>排队报数实验结果**</strong></h3><p><img src="https://i.loli.net/2020/10/04/VXD17JSFUkoQGOc.jpg" alt="img"> </p>
+<h3 id="六、-实验总结"><a href="#六、-实验总结" class="headerlink" title="六、 \实验总结**"></a><strong>六、</strong> <strong><em>\</em>实验总结**</strong></h3><p>\1. 初步简单的认识了什么是线性表，及线性表的储存方式的表示与具体操作。</p>
+<p>\2. 面对实际问题需要通过可视化数据分析，从而理解问题并通过算法解决问题。</p>
+<p>\3. 线性表的两种存储方式顺序、链式都有对应的特点，缺点，常常需要争对不同的问题来选择。</p>
+<p>\4. 顺序线性表的特点，插入、删除操作比较耗时（相对）；查询快等。</p>
+<p>\5. 链式线性表的特点，插入、删除快（相对）；查询慢需要循环等。</p>
+<p>\6. 通过结合两者的特点就出现了双向循环链式线性表等。</p>
+<p>\7. 需要在后面的学习中完善去理解线性表。</p>
+<h3 id="七、-实验代码"><a href="#七、-实验代码" class="headerlink" title="七、 \实验代码**"></a><strong>七、</strong> <strong><em>\</em>实验代码**</strong></h3><h3 id="1-顺序线性表实验源代码"><a href="#1-顺序线性表实验源代码" class="headerlink" title="1. \顺序线性表实验源代码**"></a><strong>1.</strong> <strong><em>\</em>顺序线性表实验源代码**</strong></h3><p><a href="https://github.com/xiaoandx/learningCode/blob/master/C_Code/ch2/linearTableTest.cpp" target="_blank" rel="noopener">点击查看：顺序线性表部分操作源码</a></p>
+<h3 id="2-链式线性表实验源代码"><a href="#2-链式线性表实验源代码" class="headerlink" title="2. \链式线性表实验源代码**"></a><strong>2.</strong> <strong><em>\</em>链式线性表实验源代码**</strong></h3><p><a href="https://github.com/xiaoandx/learningCode/blob/master/C_Code/ch2/linearTableLDPTest.cpp" target="_blank" rel="noopener">点击查看：链式线性表部分操作源码</a></p>
+<h3 id="3-约瑟夫循环单链表解决排队报数实验源代码"><a href="#3-约瑟夫循环单链表解决排队报数实验源代码" class="headerlink" title="3. \约瑟夫循环单链表解决排队报数实验源代码**"></a><strong>3.</strong> <strong><em>\</em>约瑟夫循环单链表解决排队报数实验源代码**</strong></h3><p><a href="https://github.com/xiaoandx/learningCode/blob/master/C_Code/ch3/sequentialCounting.cpp" target="_blank" rel="noopener">点击查看：约瑟夫循环单链表解决排队报数</a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://blog.xiaoandx.club/article/linear_table_operation/" title="数据结构与算法实验报告" target="_blank" rel="external">https://blog.xiaoandx.club/article/linear_table_operation/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/xiaoandx" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/xiaoandx" target="_blank"><span class="text-dark">WEI.ZHOU</span><small class="ml-1x">大眼睛工程师</small></a></h3>
+        <div>个人简介</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81MTk2My8yODQ0NA==">
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/article/git-commit-format/" title="git commit 格式限定标准"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/article/data_structure_and_algorithm/" title="数据结构"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/xiaoandx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.xiaoandx.club" target="_blank" title="Resume" data-toggle=tooltip data-placement=top><i class="icon icon-resume"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/xiaoandx" target="_blank"> xiaoandx </a>base on <a href="https://www.xiaoandx.club" target="_blank">resume</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

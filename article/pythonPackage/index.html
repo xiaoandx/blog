@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>python项目打包exe运行 | 大眼睛工程师</title>
+  <meta name="description" content="​        写好python每次只能在自己电脑上运行，没办法拷贝直接在别的电脑上运行(需要python环境+重新下载依赖)。 ​        为了方便自己花了一会研究怎么把python项目打包为exe（我的项目有多目录，依赖py，图片，数据文件等），不是网上只打包一个py文件为exe  一 项目目录结构|—- src    项目源码文件夹 ​    |—- commons    项目公共">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python项目打包exe运行">
+<meta property="og:url" content="https://blog.xiaoandx.club/article/pythonPackage/index.html">
+<meta property="og:site_name" content="一个拥有像素眼的后端工程师">
+<meta property="og:description" content="​        写好python每次只能在自己电脑上运行，没办法拷贝直接在别的电脑上运行(需要python环境+重新下载依赖)。 ​        为了方便自己花了一会研究怎么把python项目打包为exe（我的项目有多目录，依赖py，图片，数据文件等），不是网上只打包一个py文件为exe  一 项目目录结构|—- src    项目源码文件夹 ​    |—- commons    项目公共">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/01/02/KoG1UqPLBHksAuJ.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/02/Z1uvzd9rnGADX3W.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/02/h8gOI9yq4elufiM.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/02/OF437cGVCUxElXJ.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/02/eYWNdqhrbwj3H8P.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/02/L1ZeD2PiAYKTVGU.png">
+<meta property="article:published_time" content="2021-01-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-01-02T08:06:40.580Z">
+<meta property="article:author" content="XIAOANDX">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/02/KoG1UqPLBHksAuJ.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://blog.xiaoandx.club/article/pythonPackage/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="一个拥有像素眼的后端工程师" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/xiaoandx" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">WEI.ZHOU</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">大眼睛工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/xiaoandx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.xiaoandx.club" target="_blank" title="Resume" data-toggle=tooltip data-placement=top><i class="icon icon-resume"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>2021年新开始新起点</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a><span class="category-list-count">103</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB/">代码分享</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">学习资料</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">实用工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E5%B7%A7%E5%88%86%E4%BA%AB/">技巧分享</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%A5%E9%94%99%E6%80%BB%E7%BB%93/">报错总结</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-or-C/" rel="tag">C or C++</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">100</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/" rel="tag">JavaWeb</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NodeJs/" rel="tag">NodeJs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pc/" rel="tag">Pc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/" rel="tag">RESTful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/" rel="tag">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WPS%E5%8E%BB%E5%B9%BF%E5%91%8A/" rel="tag">WPS去广告</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baidu/" rel="tag">baidu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free/" rel="tag">free</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitignore/" rel="tag">gitignore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/object-fit/" rel="tag">object-fit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replaced-element/" rel="tag">replaced element</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reset/" rel="tag">reset</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" rel="tag">windows截图软件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" rel="tag">前端知识</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" rel="tag">截图软件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BE%A4%E5%8F%91%E9%82%AE%E4%BB%B6/" rel="tag">群发邮件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%AE%BA/" rel="tag">软件工程概论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/" rel="tag">面试指南</a><span class="tag-list-count">103</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/API/" style="font-size: 13px;">API</a> <a href="/tags/C/" style="font-size: 13px;">C</a> <a href="/tags/C-or-C/" style="font-size: 13.78px;">C or C++</a> <a href="/tags/C/" style="font-size: 13px;">C++</a> <a href="/tags/CSS/" style="font-size: 13px;">CSS</a> <a href="/tags/IDEA/" style="font-size: 13px;">IDEA</a> <a href="/tags/Java/" style="font-size: 13.89px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 13.56px;">JavaWeb</a> <a href="/tags/Linux/" style="font-size: 13.11px;">Linux</a> <a href="/tags/Maven/" style="font-size: 13px;">Maven</a> <a href="/tags/NodeJs/" style="font-size: 13px;">NodeJs</a> <a href="/tags/Pc/" style="font-size: 13px;">Pc</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/RESTful/" style="font-size: 13px;">RESTful</a> <a href="/tags/Spring/" style="font-size: 13px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 13.22px;">SpringBoot</a> <a href="/tags/VMware/" style="font-size: 13px;">VMware</a> <a href="/tags/WPS%E5%8E%BB%E5%B9%BF%E5%91%8A/" style="font-size: 13px;">WPS去广告</a> <a href="/tags/Web/" style="font-size: 13px;">Web</a> <a href="/tags/baidu/" style="font-size: 13px;">baidu</a> <a href="/tags/free/" style="font-size: 13.56px;">free</a> <a href="/tags/git/" style="font-size: 13.67px;">git</a> <a href="/tags/gitignore/" style="font-size: 13px;">gitignore</a> <a href="/tags/object-fit/" style="font-size: 13px;">object-fit</a> <a href="/tags/replaced-element/" style="font-size: 13px;">replaced element</a> <a href="/tags/reset/" style="font-size: 13px;">reset</a> <a href="/tags/shell/" style="font-size: 13.11px;">shell</a> <a href="/tags/windows%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" style="font-size: 13px;">windows截图软件</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 13.44px;">前端</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" style="font-size: 13px;">前端知识</a> <a href="/tags/%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" style="font-size: 13px;">截图软件</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 13.11px;">数据结构和算法</a> <a href="/tags/%E7%BE%A4%E5%8F%91%E9%82%AE%E4%BB%B6/" style="font-size: 13px;">群发邮件</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13px;">设计模式</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%AE%BA/" style="font-size: 13px;">软件工程概论</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/" style="font-size: 14px;">面试指南</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">103</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/article/hello-world/" class="title">Hello World</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-09-24T06:13:30.425Z" itemprop="datePublished">2021-09-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NodeJs/">NodeJs</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202109240001/" class="title">NodeJs-koa2-框架学习</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-09-23T16:00:00.000Z" itemprop="datePublished">2021-09-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202105031017/" class="title">05-String s = &#34;java&#34;与String s = new String(&#34;java&#34;)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202105031018/" class="title">06-String，StringBuffer，StringBuilder区别</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202105031019/" class="title">07-接口和抽象类的区别</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">一 项目目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E5%AE%89%E8%A3%85%E6%89%93%E5%8C%85%E4%BE%9D%E8%B5%96%E5%B7%A5%E5%85%B7"><span class="toc-number">2.</span> <span class="toc-text">二 安装打包依赖工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-pip%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 pip安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E6%89%93%E5%8C%85%E5%89%8D%E5%85%88%E9%85%8D%E7%BD%AE%E6%89%93%E5%8C%85%E7%8E%AF%E5%A2%83"><span class="toc-number">3.</span> <span class="toc-text">三 打包前先配置打包环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%94%9F%E6%88%90%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 生成打包配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%BC%96%E8%BE%91%E9%85%8D%E7%BD%AE-%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 编辑配置(自定义)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A0%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84"><span class="toc-number">3.2.1.</span> <span class="toc-text">①默认配置结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A1%E4%BF%AE%E6%94%B9%E8%87%AA%E5%B7%B1%E9%9C%80%E8%A6%81%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">3.2.2.</span> <span class="toc-text">②修改自己需要的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%B7%B1%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%89%80%E6%9C%89%E7%9A%84py%E6%96%87%E4%BB%B6"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">添加自己项目中所有的py文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E9%A1%B9%E7%9B%AE%E9%9C%80%E8%A6%81%E4%BE%9D%E8%B5%96%E7%9A%84%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93"><span class="toc-number">3.2.2.2.</span> <span class="toc-text">添加项目需要依赖的第三方库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%B7%B1%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84-image%EF%BC%8Ctxt%EF%BC%8Ccsv%EF%BC%8Cico-%E2%80%A6%E2%80%A6"><span class="toc-number">3.2.2.3.</span> <span class="toc-text">添加自己项目的资源路径(image，txt，csv，ico ……)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A2%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E6%95%88%E6%9E%9C"><span class="toc-number">3.2.3.</span> <span class="toc-text">③配置完成后的效果</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E6%89%93%E5%8C%85"><span class="toc-number">4.</span> <span class="toc-text">四 打包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1%E6%89%93%E5%8C%85%E7%BB%93%E6%9E%9C"><span class="toc-number">4.1.</span> <span class="toc-text">4.1打包结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E8%BF%90%E8%A1%8Cexe"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 运行exe</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">五 报错处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E6%9F%A5%E7%9C%8Bexe%E6%8A%A5%E9%94%99"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 查看exe报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E6%89%93%E5%8C%85%E6%89%BE%E4%B8%8D%E5%88%B0%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 打包找不到模块问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3%E6%89%93%E5%8C%85%E5%90%8E%EF%BC%8C%E4%B8%80%E7%9B%B4%E6%8F%90%E7%A4%BAFailed-to-execute-scrpt-xxx%E9%97%AE%E9%A2%98"><span class="toc-number">5.3.</span> <span class="toc-text">5.3打包后，一直提示Failed to execute scrpt xxx问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4%E8%87%AA%E5%AE%9A%E4%B9%89exe%E5%9B%BE%E6%A0%87"><span class="toc-number">5.4.</span> <span class="toc-text">5.4自定义exe图标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5%E5%85%B6%E5%AE%83%E9%97%AE%E9%A2%98"><span class="toc-number">5.5.</span> <span class="toc-text">5.5其它问题</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-pythonPackage" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python项目打包exe运行
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/article/pythonPackage/" class="article-date">
+	  <time datetime="2021-01-01T16:00:00.000Z" itemprop="datePublished">2021-01-02</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E5%B7%A7%E5%88%86%E4%BA%AB/">技巧分享</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Python/" rel="tag">Python</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/article/pythonPackage/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>​        写好python每次只能在自己电脑上运行，没办法拷贝直接在别的电脑上运行(需要python环境+重新下载依赖)。</p>
+<p>​        为了方便自己花了一会研究怎么把python项目打包为exe（我的项目有多目录，依赖py，图片，数据文件等），不是网上只打包一个py文件为exe</p>
+</blockquote>
+<h2 id="一-项目目录结构"><a href="#一-项目目录结构" class="headerlink" title="一 项目目录结构"></a>一 项目目录结构</h2><p>|—- src    项目源码文件夹</p>
+<p>​    |—- commons    项目公共工具类</p>
+<p>​            |—- CommonsException.py    项目定义异常处理</p>
+<p>​            |—- Constant.py    项目常量定义类</p>
+<p>​            |—- GetCOVIDData.py    疫情数据爬虫接口</p>
+<p>​            |—- GetJournalism.py    新闻内容爬虫接口</p>
+<p>​            |—- SaveFile.py    保存爬虫数据到本地接口</p>
+<p>​    |—- draw    项目所有绘图接口</p>
+<p>​            |—- DistrictChart.py    绘制区域地区数据统计柱状图</p>
+<p>​            |—- DramMapByRegion.py    绘制地区疫情统计地图</p>
+<p>​            |—- DrawRegionalComparisonHistogram.py        绘制地区对比柱状图</p>
+<p>​            |—- StatisticalHighFrequencyWord.py    绘制新闻高频词云</p>
+<p>​    |—- file    项目爬虫或数据分析保存的数据文件</p>
+<p>​            |—- csv    保存csv数据文件</p>
+<p>​            |—- img    项目需要的img，ico</p>
+<p>​            |—- map    地图文件</p>
+<p>​            |—- txt txt数据文件</p>
+<p>​    |—- WindowControl.py    项目运行入口</p>
+<h2 id="二-安装打包依赖工具"><a href="#二-安装打包依赖工具" class="headerlink" title="二 安装打包依赖工具"></a>二 安装打包依赖工具</h2><blockquote>
+<p>前提：有python3环境</p>
+<p>如果没有需要先下载安装python参考：  <a target="_blank" rel="noopener" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></p>
+</blockquote>
+<h3 id="2-1-pip安装"><a href="#2-1-pip安装" class="headerlink" title="2.1 pip安装"></a>2.1 pip安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyinstaller -i https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F;</span><br></pre></td></tr></table></figure>
+<p>输入安装命令后等待一会即可安装成功当看到dos窗口最后显示successfull  就安装成功</p>
+<h2 id="三-打包前先配置打包环境"><a href="#三-打包前先配置打包环境" class="headerlink" title="三 打包前先配置打包环境"></a>三 打包前先配置打包环境</h2><h3 id="3-1-生成打包配置文件"><a href="#3-1-生成打包配置文件" class="headerlink" title="3.1 生成打包配置文件"></a>3.1 生成打包配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyi-makespec -w 项目入口文件.py</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>说明： 我在项目启动文件下运行的命令，所以 -w 项目入口文件.py 是相对路径</p>
+<p>也可以根据自己项目特点用绝对路径也可以</p>
+</blockquote>
+<p>在入口文件所在目录dos路径下 输入上面的命令就可以得到项目打包的运行文件如下图</p>
+<p><img src="https://i.loli.net/2021/01/02/KoG1UqPLBHksAuJ.png" alt="image-20210102153048882"></p>
+<h3 id="3-2-编辑配置-自定义"><a href="#3-2-编辑配置-自定义" class="headerlink" title="3.2 编辑配置(自定义)"></a>3.2 编辑配置(自定义)</h3><h4 id="①默认配置结构"><a href="#①默认配置结构" class="headerlink" title="①默认配置结构"></a>①默认配置结构</h4><p><img src="https://i.loli.net/2021/01/02/Z1uvzd9rnGADX3W.png" alt="image-20210102153650735"></p>
+<h4 id="②修改自己需要的配置"><a href="#②修改自己需要的配置" class="headerlink" title="②修改自己需要的配置"></a>②修改自己需要的配置</h4><h5 id="添加自己项目中所有的py文件"><a href="#添加自己项目中所有的py文件" class="headerlink" title="添加自己项目中所有的py文件"></a>添加自己项目中所有的py文件</h5><p><img src="https://i.loli.net/2021/01/02/h8gOI9yq4elufiM.png" alt="image-20210102153952519"></p>
+<h5 id="添加项目需要依赖的第三方库"><a href="#添加项目需要依赖的第三方库" class="headerlink" title="添加项目需要依赖的第三方库"></a>添加项目需要依赖的第三方库</h5><p><img src="https://i.loli.net/2021/01/02/OF437cGVCUxElXJ.png" alt="image-20210102154121924"></p>
+<blockquote>
+<p>pyinstaller在进行打包时，会解析打包的python文件，自动寻找py源文件的依赖模块。但是pyinstaller解析模块时可能会遗漏某些模块（<strong>not visible to the analysis phase</strong>），造成打包后执行程序时出现类似<strong>No Module named xxx</strong>。这时我们就需要在Analysis下hiddenimports中加入遗漏的模块。</p>
+</blockquote>
+<h5 id="添加自己项目的资源路径-image，txt，csv，ico-……"><a href="#添加自己项目的资源路径-image，txt，csv，ico-……" class="headerlink" title="添加自己项目的资源路径(image，txt，csv，ico ……)"></a>添加自己项目的资源路径(image，txt，csv，ico ……)</h5><p><img src="https://i.loli.net/2021/01/02/eYWNdqhrbwj3H8P.png" alt="image-20210102154609969"></p>
+<blockquote>
+<p>资源文件包括打包的python项目使用的相关文件，如图标文件，文本文件等。对于此类资源文件的打包需要设置Analysis的datas。</p>
+</blockquote>
+<h4 id="③配置完成后的效果"><a href="#③配置完成后的效果" class="headerlink" title="③配置完成后的效果"></a>③配置完成后的效果</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- mode: python ; coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">block_cipher = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">SETUP_DIR = <span class="string">&#x27;C:\\Users\\xx-xx\\Desktop\\reptile\\src\\file\\&#x27;</span></span><br><span class="line">a = Analysis([<span class="string">&#x27;C:/Users/xx-xx/Desktop/reptile/src/WindowControl.py&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;C:/Users/xx-xx/Desktop/reptile/src/commons/CommonsException.py&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;C:/Users/xx-xx/Desktop/reptile/src/commons/Constant.py&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;C:/Users/xx-xx/Desktop/reptile/src/commons/GetCOVIDData.py&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;C:/Users/xx-xx/Desktop/reptile/src/commons/GetJournalism.py&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;C:/Users/xx-xx/Desktop/reptile/src/commons/SaveFile.py&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;C:/Users/xx-xx/Desktop/reptile/src/draw/DistrictChart.py&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;C:/Users/xx-xx/Desktop/reptile/src/draw/DramMapByRegion.py&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;C:/Users/xx-xx/Desktop/reptile/src/draw/DrawRegionalComparisonHistogram.py&#x27;</span>,</span><br><span class="line">			<span class="string">&#x27;C:/Users/xx-xx/Desktop/reptile/src/draw/StatisticalHighFrequencyWord.py&#x27;</span>],</span><br><span class="line">             pathex=[<span class="string">&#x27;C:\\Users\\xx-xx\\Desktop\\reptile\\src&#x27;</span>],</span><br><span class="line">             binaries=[],</span><br><span class="line">             datas=[(SETUP_DIR, <span class="string">&#x27;file&#x27;</span>)],</span><br><span class="line">             hiddenimports=[<span class="string">&#x27;os&#x27;</span>,<span class="string">&#x27;webbrowser&#x27;</span>,<span class="string">&#x27;IPython&#x27;</span>,<span class="string">&#x27;frozen&#x27;</span>,<span class="string">&#x27;tornado&#x27;</span>,<span class="string">&#x27;requests&#x27;</span>,<span class="string">&#x27;jieba&#x27;</span>,<span class="string">&#x27;beautifulsoup4&#x27;</span>,<span class="string">&#x27;lxml&#x27;</span>,<span class="string">&#x27;pandas&#x27;</span>,<span class="string">&#x27;pyecharts&#x27;</span>,<span class="string">&#x27;seaborn&#x27;</span>,<span class="string">&#x27;PyQt5&#x27;</span>],</span><br><span class="line">             hookspath=[],</span><br><span class="line">             runtime_hooks=[],</span><br><span class="line">             excludes=[],</span><br><span class="line">             win_no_prefer_redirects=<span class="literal">False</span>,</span><br><span class="line">             win_private_assemblies=<span class="literal">False</span>,</span><br><span class="line">             cipher=block_cipher,</span><br><span class="line">             noarchive=<span class="literal">False</span>)</span><br><span class="line">pyz = PYZ(a.pure, a.zipped_data,</span><br><span class="line">             cipher=block_cipher)</span><br><span class="line">exe = EXE(pyz,</span><br><span class="line">          a.scripts,</span><br><span class="line">          [],</span><br><span class="line">          exclude_binaries=<span class="literal">True</span>,</span><br><span class="line">          name=<span class="string">&#x27;WindowControl&#x27;</span>,</span><br><span class="line">          debug=<span class="literal">False</span>,</span><br><span class="line">          bootloader_ignore_signals=<span class="literal">False</span>,</span><br><span class="line">          strip=<span class="literal">False</span>,</span><br><span class="line">          upx=<span class="literal">True</span>,</span><br><span class="line">          console=<span class="literal">True</span> )</span><br><span class="line">coll = COLLECT(exe,</span><br><span class="line">               a.binaries,</span><br><span class="line">               a.zipfiles,</span><br><span class="line">               a.datas,</span><br><span class="line">               strip=<span class="literal">False</span>,</span><br><span class="line">               upx=<span class="literal">True</span>,</span><br><span class="line">               upx_exclude=[],</span><br><span class="line">               name=<span class="string">&#x27;WindowControl&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="四-打包"><a href="#四-打包" class="headerlink" title="四 打包"></a>四 打包</h2><p>打包直接运行刚刚的配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -D WindowControl.spec</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过命令 pyinstaller -D xxx.spec(直接给个生成的spec文件的绝对路径) 打包成exe安装包。</p>
+</blockquote>
+<h3 id="4-1打包结果"><a href="#4-1打包结果" class="headerlink" title="4.1打包结果"></a>4.1打包结果</h3><p><img src="https://i.loli.net/2021/01/02/L1ZeD2PiAYKTVGU.png" alt="image-20210102155408990"></p>
+<blockquote>
+<p>build   目录下为打包临时文件(可删除)</p>
+<p>dist    目录为exe运行文件</p>
+</blockquote>
+<h3 id="4-2-运行exe"><a href="#4-2-运行exe" class="headerlink" title="4.2 运行exe"></a>4.2 运行exe</h3><p>双击运行，如果项目打包成功可以直接运行成功，如果出现闪退，运行不起参考 <strong>五报错处理</strong></p>
+<h2 id="五-报错处理"><a href="#五-报错处理" class="headerlink" title="五 报错处理"></a>五 报错处理</h2><h3 id="5-1-查看exe报错"><a href="#5-1-查看exe报错" class="headerlink" title="5.1 查看exe报错"></a>5.1 查看exe报错</h3><p>需要修改打包配置文件中的  <code>console=True</code> ，修改完成后需要再次打包，这样打包成功运行exe就会提示出现的错误</p>
+<h3 id="5-2-打包找不到模块问题"><a href="#5-2-打包找不到模块问题" class="headerlink" title="5.2 打包找不到模块问题"></a>5.2 打包找不到模块问题</h3><p>如果依赖的东西模块不全，总会报no modle等错误，需要检查报错什么依赖没有引入，在将对应的依赖包名 添加到打包配置文件中</p>
+<h3 id="5-3打包后，一直提示Failed-to-execute-scrpt-xxx问题"><a href="#5-3打包后，一直提示Failed-to-execute-scrpt-xxx问题" class="headerlink" title="5.3打包后，一直提示Failed to execute scrpt xxx问题"></a>5.3打包后，一直提示Failed to execute scrpt xxx问题</h3><p>​    打包成功，但是没有报任何错误，但是运行exe文件时，总是会提示excute fail的错误，下控制台的报错信息(开启方法参考 5.1)，不要去往这钻牛角尖，这时候，你一是先检查打包的路径是不是项目的顶层目录可以加载lib里的其他依赖模块，二是编辑spec文件，将exe单元下的console属性改成True（默认是false）记得保存，然后重新执行以下第二个命令，重新打包exe包之后，在cmd下运行exe执行文件，这时候会出现报错误原因（如果不改spec这个字段内容，无论是双击运行，还是cmd中运行，都只会弹出这个failed to excute的无头脑error，别问头为什么知道，被坑出来的），根据提示来解决具体是缺少依赖模块原因还是代码中读不到非代码资源（txt，png..）,如果读不到非代码资源，就根据提示的not found 的路径，手动建立相关目录，放上需要用到的文档资源。</p>
+<h3 id="5-4自定义exe图标"><a href="#5-4自定义exe图标" class="headerlink" title="5.4自定义exe图标"></a>5.4自定义exe图标</h3><p>需要将软件图标<code>ico</code>放置在 <code>XXXXX.spec</code> 相同目录下，然后运行下面命令打包即可,建议软件图标统一使用ico格式的；如果没有只有png，jpg格式的可以在网上 搜索ico在线转化即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -i -D xxx.ico WindowControl.spec</span><br></pre></td></tr></table></figure>
+<h3 id="5-5其它问题"><a href="#5-5其它问题" class="headerlink" title="5.5其它问题"></a>5.5其它问题</h3><p>出现什么问题一定要看cmd窗口中的报错信息在依次进行修改</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://blog.xiaoandx.club/article/pythonPackage/" title="python项目打包exe运行" target="_blank" rel="external">https://blog.xiaoandx.club/article/pythonPackage/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/xiaoandx" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/xiaoandx" target="_blank"><span class="text-dark">WEI.ZHOU</span><small class="ml-1x">大眼睛工程师</small></a></h3>
+        <div>个人简介</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81MTk2My8yODQ0NA==">
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/article/JDK_environment/" title="jdk安装环境变量配置"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/article/springboot-package-jar/" title="spring boot 项目优化打包"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/xiaoandx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.xiaoandx.club" target="_blank" title="Resume" data-toggle=tooltip data-placement=top><i class="icon icon-resume"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/xiaoandx" target="_blank"> xiaoandx </a>base on <a href="https://www.xiaoandx.club" target="_blank">resume</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

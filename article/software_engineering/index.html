@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>软件工程概论 | 大眼睛工程师</title>
+  <meta name="description" content="一、学习需要理解的问题💪 下面的问题需要在以后的学习中不断完善，加深理解，内容后面随机完善 1.1 什么是软件工程？​        比较认可：软件工程是研究和应用如何以系统性的、规范化的、可定量的过程化方法去开发和维护软件，以及如何把经过时间考验而证明正确的管理技术和当前能够得到的最好的技术方法结合起来 1.2 为什么需要学习软件工程（产生背景）？​         1.3 软件工程需要解决那">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程概论">
+<meta property="og:url" content="https://blog.xiaoandx.club/article/software_engineering/index.html">
+<meta property="og:site_name" content="一个拥有像素眼的后端工程师">
+<meta property="og:description" content="一、学习需要理解的问题💪 下面的问题需要在以后的学习中不断完善，加深理解，内容后面随机完善 1.1 什么是软件工程？​        比较认可：软件工程是研究和应用如何以系统性的、规范化的、可定量的过程化方法去开发和维护软件，以及如何把经过时间考验而证明正确的管理技术和当前能够得到的最好的技术方法结合起来 1.2 为什么需要学习软件工程（产生背景）？​         1.3 软件工程需要解决那">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-11-12T12:24:39.986Z">
+<meta property="article:author" content="XIAOANDX">
+<meta property="article:tag" content="软件工程概论">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://blog.xiaoandx.club/article/software_engineering/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="一个拥有像素眼的后端工程师" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/xiaoandx" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">WEI.ZHOU</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">大眼睛工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/xiaoandx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.xiaoandx.club" target="_blank" title="Resume" data-toggle=tooltip data-placement=top><i class="icon icon-resume"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>2021年新开始新起点</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a><span class="category-list-count">103</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB/">代码分享</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">学习资料</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">实用工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E5%B7%A7%E5%88%86%E4%BA%AB/">技巧分享</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%A5%E9%94%99%E6%80%BB%E7%BB%93/">报错总结</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-or-C/" rel="tag">C or C++</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">100</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/" rel="tag">JavaWeb</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NodeJs/" rel="tag">NodeJs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pc/" rel="tag">Pc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/" rel="tag">RESTful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/" rel="tag">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WPS%E5%8E%BB%E5%B9%BF%E5%91%8A/" rel="tag">WPS去广告</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baidu/" rel="tag">baidu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free/" rel="tag">free</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitignore/" rel="tag">gitignore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/object-fit/" rel="tag">object-fit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replaced-element/" rel="tag">replaced element</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reset/" rel="tag">reset</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" rel="tag">windows截图软件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" rel="tag">前端知识</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" rel="tag">截图软件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BE%A4%E5%8F%91%E9%82%AE%E4%BB%B6/" rel="tag">群发邮件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%AE%BA/" rel="tag">软件工程概论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/" rel="tag">面试指南</a><span class="tag-list-count">103</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/API/" style="font-size: 13px;">API</a> <a href="/tags/C/" style="font-size: 13px;">C</a> <a href="/tags/C-or-C/" style="font-size: 13.78px;">C or C++</a> <a href="/tags/C/" style="font-size: 13px;">C++</a> <a href="/tags/CSS/" style="font-size: 13px;">CSS</a> <a href="/tags/IDEA/" style="font-size: 13px;">IDEA</a> <a href="/tags/Java/" style="font-size: 13.89px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 13.56px;">JavaWeb</a> <a href="/tags/Linux/" style="font-size: 13.11px;">Linux</a> <a href="/tags/Maven/" style="font-size: 13px;">Maven</a> <a href="/tags/NodeJs/" style="font-size: 13px;">NodeJs</a> <a href="/tags/Pc/" style="font-size: 13px;">Pc</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/RESTful/" style="font-size: 13px;">RESTful</a> <a href="/tags/Spring/" style="font-size: 13px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 13.22px;">SpringBoot</a> <a href="/tags/VMware/" style="font-size: 13px;">VMware</a> <a href="/tags/WPS%E5%8E%BB%E5%B9%BF%E5%91%8A/" style="font-size: 13px;">WPS去广告</a> <a href="/tags/Web/" style="font-size: 13px;">Web</a> <a href="/tags/baidu/" style="font-size: 13px;">baidu</a> <a href="/tags/free/" style="font-size: 13.56px;">free</a> <a href="/tags/git/" style="font-size: 13.67px;">git</a> <a href="/tags/gitignore/" style="font-size: 13px;">gitignore</a> <a href="/tags/object-fit/" style="font-size: 13px;">object-fit</a> <a href="/tags/replaced-element/" style="font-size: 13px;">replaced element</a> <a href="/tags/reset/" style="font-size: 13px;">reset</a> <a href="/tags/shell/" style="font-size: 13.11px;">shell</a> <a href="/tags/windows%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" style="font-size: 13px;">windows截图软件</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 13.44px;">前端</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" style="font-size: 13px;">前端知识</a> <a href="/tags/%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" style="font-size: 13px;">截图软件</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 13.11px;">数据结构和算法</a> <a href="/tags/%E7%BE%A4%E5%8F%91%E9%82%AE%E4%BB%B6/" style="font-size: 13px;">群发邮件</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13px;">设计模式</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%AE%BA/" style="font-size: 13px;">软件工程概论</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/" style="font-size: 14px;">面试指南</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">103</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/article/hello-world/" class="title">Hello World</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-09-24T06:13:30.425Z" itemprop="datePublished">2021-09-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NodeJs/">NodeJs</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202109240001/" class="title">NodeJs-koa2-框架学习</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-09-23T16:00:00.000Z" itemprop="datePublished">2021-09-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202105031017/" class="title">05-String s = &#34;java&#34;与String s = new String(&#34;java&#34;)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202105031018/" class="title">06-String，StringBuffer，StringBuilder区别</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202105031019/" class="title">07-接口和抽象类的区别</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AD%A6%E4%B9%A0%E9%9C%80%E8%A6%81%E7%90%86%E8%A7%A3%E7%9A%84%E9%97%AE%E9%A2%98%F0%9F%92%AA"><span class="toc-number">1.</span> <span class="toc-text">一、学习需要理解的问题💪</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E9%9D%A2%E7%9A%84%E9%97%AE%E9%A2%98%E9%9C%80%E8%A6%81%E5%9C%A8%E4%BB%A5%E5%90%8E%E7%9A%84%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%B8%8D%E6%96%AD%E5%AE%8C%E5%96%84%EF%BC%8C%E5%8A%A0%E6%B7%B1%E7%90%86%E8%A7%A3%EF%BC%8C%E5%86%85%E5%AE%B9%E5%90%8E%E9%9D%A2%E9%9A%8F%E6%9C%BA%E5%AE%8C%E5%96%84"><span class="toc-number">1.1.</span> <span class="toc-text">下面的问题需要在以后的学习中不断完善，加深理解，内容后面随机完善</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">1.1 什么是软件工程？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%AD%A6%E4%B9%A0%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%EF%BC%88%E4%BA%A7%E7%94%9F%E8%83%8C%E6%99%AF%EF%BC%89%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">1.2 为什么需要学习软件工程（产生背景）？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E9%9C%80%E8%A6%81%E8%A7%A3%E5%86%B3%E9%82%A3%E4%BA%9B%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">1.3 软件工程需要解决那些问题？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%AD%E6%B6%89%E5%8F%8A%E9%82%A3%E4%BA%9B%E6%96%B9%E9%9D%A2%E5%86%85%E5%AE%B9%EF%BC%9F"><span class="toc-number">1.5.</span> <span class="toc-text">1.4 软件工程中涉及那些方面内容？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AD%A6%E4%B9%A0%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E9%9C%80%E8%A6%81%E6%8E%8C%E6%8F%A1"><span class="toc-number">2.</span> <span class="toc-text">二、学习软件工程需要掌握</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%AD%E9%9C%80%E8%A6%81%E5%A6%82%E4%BD%95%E8%BF%90%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">三、软件工程中需要如何运用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E8%BD%AF%E4%BB%B6%E5%8D%B1%E6%9C%BA"><span class="toc-number">4.</span> <span class="toc-text">四、什么是软件危机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%8D%B1%E6%9C%BA%E6%8C%87%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%F0%9F%93%91%E5%92%8C%E7%BB%B4%E6%8A%A4%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E6%89%80%E9%81%87%E5%88%B0%E4%B8%80%E7%B3%BB%E5%88%97%E4%B8%A5%E9%87%8D%E9%97%AE%E9%A2%98"><span class="toc-number">4.1.</span> <span class="toc-text">软件危机指在计算机软件开发📑和维护过程中，所遇到一系列严重问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E8%BD%AF%E4%BB%B6%E5%8D%B1%E6%9C%BA%E5%85%B7%E4%BD%93%E8%A1%A8%E7%8E%B0"><span class="toc-number">4.2.</span> <span class="toc-text">4.1 软件危机具体表现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A0-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%88%90%E6%9C%AC%E5%92%8C%E8%BF%9B%E5%BA%A6%E9%83%BD%E8%B6%85%E9%A2%84%E6%9C%9F"><span class="toc-number">4.2.1.</span> <span class="toc-text">①  软件开发成本和进度都超预期</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A1-%E7%94%A8%E6%88%B7%E5%AF%B9%E2%80%9C%E5%B7%B2%E5%AE%8C%E6%88%90%E7%9A%84%E2%80%9D%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%8D%E6%BB%A1%E6%84%8F"><span class="toc-number">4.2.2.</span> <span class="toc-text">② 用户对“已完成的”软件系统不满意</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A2-%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E9%9D%A0%E4%B8%8D%E4%BD%8F"><span class="toc-number">4.2.3.</span> <span class="toc-text">③ 软件质量靠不住</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A3-%E8%BD%AF%E4%BB%B6%E4%B8%8D%E5%8F%AF%E7%BB%B4%E6%8A%A4"><span class="toc-number">4.2.4.</span> <span class="toc-text">④ 软件不可维护</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A4-%E6%B2%A1%E6%9C%89%E8%AF%A6%E7%BB%86%E9%80%82%E5%90%88%E7%9A%84%E6%96%87%E6%A1%A3%E8%B5%84%E6%96%99"><span class="toc-number">4.2.5.</span> <span class="toc-text">⑤ 没有详细适合的文档资料</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A5-%E8%BD%AF%E4%BB%B6%E6%88%90%E6%9C%AC%E9%80%90%E5%B9%B4%E5%A2%9E%E5%8A%A0"><span class="toc-number">4.2.6.</span> <span class="toc-text">⑥ 软件成本逐年增加</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A6-%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%94%9F%E4%BA%A7%E7%8E%87%E8%B7%9F%E4%B8%8D%E4%B8%8A%E7%A1%AC%E4%BB%B6%E7%9A%84%E9%80%9F%E5%BA%A6"><span class="toc-number">4.2.7.</span> <span class="toc-text">⑦ 软件的生产率跟不上硬件的速度</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E8%BD%AF%E4%BB%B6%E5%8D%B1%E6%9C%BA%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">4.3.</span> <span class="toc-text">4.2 软件危机产生的原因</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A0-%E8%BD%AF%E4%BB%B6%E8%A7%84%E6%A8%A1%E8%B6%8A%E6%9D%A5%E8%B6%8A%E5%A4%A7%EF%BC%8C%E7%BB%93%E6%9E%84%E8%B6%8A%E6%9D%A5%E8%B6%8A%E5%A4%8D%E6%9D%82"><span class="toc-number">4.3.1.</span> <span class="toc-text">① 软件规模越来越大，结构越来越复杂</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A1-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%AE%A1%E7%90%86%E5%9B%B0%E9%9A%BE"><span class="toc-number">4.3.2.</span> <span class="toc-text">② 软件开发管理困难</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A2-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B4%B9%E7%94%A8%E4%B8%8D%E6%96%AD%E5%A2%9E%E5%8A%A0"><span class="toc-number">4.3.3.</span> <span class="toc-text">③ 软件开发费用不断增加</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A3-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF%E8%90%BD%E5%90%8E"><span class="toc-number">4.3.4.</span> <span class="toc-text">④ 软件开发技术落后</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A4-%E7%94%9F%E4%BA%A7%E6%96%B9%E5%BC%8F%E8%90%BD%E5%90%8E%E3%80%82"><span class="toc-number">4.3.5.</span> <span class="toc-text">⑤ 生产方式落后。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A5-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E8%90%BD%E5%90%8E%EF%BC%8C%E7%94%9F%E4%BA%A7%E7%8E%87%E6%8F%90%E9%AB%98%E7%BC%93%E6%85%A2%E3%80%82"><span class="toc-number">4.3.6.</span> <span class="toc-text">⑥  开发工具落后，生产率提高缓慢。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E6%B6%88%E9%99%A4%E8%BD%AF%E4%BB%B6%E5%8D%B1%E6%9C%BA%E7%9A%84%E9%80%94%E5%BE%84"><span class="toc-number">4.4.</span> <span class="toc-text">4.3 消除软件危机的途径</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A0-%E6%B6%88%E9%99%A4%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%82%E7%82%B9%E5%92%8C%E5%81%9A%E6%B3%95"><span class="toc-number">4.4.1.</span> <span class="toc-text">① 消除错误的观点和做法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A1-%E6%8E%A8%E5%B9%BF%E4%BD%BF%E7%94%A8%E6%88%90%E5%8A%9F%E7%9A%84%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF%E5%92%8C%E6%96%B9%E6%B3%95"><span class="toc-number">4.4.2.</span> <span class="toc-text">② 推广使用成功的开发技术和方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A2-%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7%E5%92%8C%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%94%AF%E6%8C%81%E7%8E%AF%E5%A2%83"><span class="toc-number">4.4.3.</span> <span class="toc-text">③ 开发使用软件工具和软件工程支持环境</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A3-%E5%8A%A0%E5%BC%BA%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-number">4.4.4.</span> <span class="toc-text">④ 加强软件工程管理</span></a></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-software_engineering" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      软件工程概论
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/article/software_engineering/" class="article-date">
+	  <time datetime="2020-09-12T16:00:00.000Z" itemprop="datePublished">2020-09-13</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%AE%BA/" rel="tag">软件工程概论</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/article/software_engineering/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="一、学习需要理解的问题💪"><a href="#一、学习需要理解的问题💪" class="headerlink" title="一、学习需要理解的问题💪"></a>一、学习需要理解的问题💪</h3><blockquote>
+<h4 id="下面的问题需要在以后的学习中不断完善，加深理解，内容后面随机完善"><a href="#下面的问题需要在以后的学习中不断完善，加深理解，内容后面随机完善" class="headerlink" title="下面的问题需要在以后的学习中不断完善，加深理解，内容后面随机完善"></a>下面的问题需要在以后的学习中不断完善，加深理解，内容后面随机完善</h4></blockquote>
+<h4 id="1-1-什么是软件工程？"><a href="#1-1-什么是软件工程？" class="headerlink" title="1.1 什么是软件工程？"></a>1.1 什么是软件工程？</h4><p>​        <strong>比较认可：</strong>软件工程是研究和应用如何以系统性的、规范化的、可定量的过程化方法去开发和维护软件，以及如何把经过时间考验而证明正确的管理技术和当前能够得到的最好的技术方法结合起来</p>
+<h4 id="1-2-为什么需要学习软件工程（产生背景）？"><a href="#1-2-为什么需要学习软件工程（产生背景）？" class="headerlink" title="1.2 为什么需要学习软件工程（产生背景）？"></a>1.2 为什么需要学习软件工程（产生背景）？</h4><p>​        </p>
+<h4 id="1-3-软件工程需要解决那些问题？"><a href="#1-3-软件工程需要解决那些问题？" class="headerlink" title="1.3 软件工程需要解决那些问题？"></a>1.3 软件工程需要解决那些问题？</h4><h4 id="1-4-软件工程中涉及那些方面内容？"><a href="#1-4-软件工程中涉及那些方面内容？" class="headerlink" title="1.4 软件工程中涉及那些方面内容？"></a>1.4 软件工程中涉及那些方面内容？</h4><h3 id="二、学习软件工程需要掌握"><a href="#二、学习软件工程需要掌握" class="headerlink" title="二、学习软件工程需要掌握"></a>二、学习软件工程需要掌握</h3><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>知识点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>概念</td>
+</tr>
+<tr>
+<td>2</td>
+<td>技术</td>
+</tr>
+<tr>
+<td>3</td>
+<td>过程</td>
+</tr>
+<tr>
+<td>4</td>
+<td>手段</td>
+</tr>
+<tr>
+<td>5</td>
+<td>工具</td>
+</tr>
+</tbody>
+</table>
+<p>​    </p>
+<h3 id="三、软件工程中需要如何运用"><a href="#三、软件工程中需要如何运用" class="headerlink" title="三、软件工程中需要如何运用"></a>三、软件工程中需要如何运用</h3><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>可行性分析</td>
+</tr>
+<tr>
+<td>2</td>
+<td>软件需求分析</td>
+</tr>
+<tr>
+<td>3</td>
+<td>软件设计</td>
+</tr>
+<tr>
+<td>4</td>
+<td>软件编码开发</td>
+</tr>
+<tr>
+<td>5</td>
+<td>软件测试</td>
+</tr>
+<tr>
+<td>6</td>
+<td>软件维护</td>
+</tr>
+</tbody>
+</table>
+<h3 id="四、什么是软件危机"><a href="#四、什么是软件危机" class="headerlink" title="四、什么是软件危机"></a>四、什么是软件危机</h3><blockquote>
+<h4 id="软件危机指在计算机软件开发📑和维护过程中，所遇到一系列严重问题"><a href="#软件危机指在计算机软件开发📑和维护过程中，所遇到一系列严重问题" class="headerlink" title="软件危机指在计算机软件开发📑和维护过程中，所遇到一系列严重问题"></a>软件危机指在计算机软件<code>开发</code>📑和<code>维护</code>过程中，所遇到一系列严重问题</h4></blockquote>
+<h4 id="4-1-软件危机具体表现"><a href="#4-1-软件危机具体表现" class="headerlink" title="4.1 软件危机具体表现"></a>4.1 软件危机具体表现</h4><h5 id="①-软件开发成本和进度都超预期"><a href="#①-软件开发成本和进度都超预期" class="headerlink" title="①  软件开发成本和进度都超预期"></a>①  软件开发成本和进度都超预期</h5><h5 id="②-用户对“已完成的”软件系统不满意"><a href="#②-用户对“已完成的”软件系统不满意" class="headerlink" title="② 用户对“已完成的”软件系统不满意"></a>② 用户对“已完成的”软件系统不满意</h5><h5 id="③-软件质量靠不住"><a href="#③-软件质量靠不住" class="headerlink" title="③ 软件质量靠不住"></a>③ 软件质量靠不住</h5><h5 id="④-软件不可维护"><a href="#④-软件不可维护" class="headerlink" title="④ 软件不可维护"></a>④ 软件不可维护</h5><h5 id="⑤-没有详细适合的文档资料"><a href="#⑤-没有详细适合的文档资料" class="headerlink" title="⑤ 没有详细适合的文档资料"></a>⑤ 没有详细适合的文档资料</h5><h5 id="⑥-软件成本逐年增加"><a href="#⑥-软件成本逐年增加" class="headerlink" title="⑥ 软件成本逐年增加"></a>⑥ 软件成本逐年增加</h5><h5 id="⑦-软件的生产率跟不上硬件的速度"><a href="#⑦-软件的生产率跟不上硬件的速度" class="headerlink" title="⑦ 软件的生产率跟不上硬件的速度"></a>⑦ 软件的生产率跟不上硬件的速度</h5><h4 id="4-2-软件危机产生的原因"><a href="#4-2-软件危机产生的原因" class="headerlink" title="4.2 软件危机产生的原因"></a>4.2 软件危机产生的原因</h4><h5 id="①-软件规模越来越大，结构越来越复杂"><a href="#①-软件规模越来越大，结构越来越复杂" class="headerlink" title="① 软件规模越来越大，结构越来越复杂"></a>① 软件规模越来越大，结构越来越复杂</h5><h5 id="②-软件开发管理困难"><a href="#②-软件开发管理困难" class="headerlink" title="② 软件开发管理困难"></a>② 软件开发管理困难</h5><h5 id="③-软件开发费用不断增加"><a href="#③-软件开发费用不断增加" class="headerlink" title="③ 软件开发费用不断增加"></a>③ 软件开发费用不断增加</h5><h5 id="④-软件开发技术落后"><a href="#④-软件开发技术落后" class="headerlink" title="④ 软件开发技术落后"></a>④ 软件开发技术落后</h5><h5 id="⑤-生产方式落后。"><a href="#⑤-生产方式落后。" class="headerlink" title="⑤ 生产方式落后。"></a>⑤ 生产方式落后。</h5><h5 id="⑥-开发工具落后，生产率提高缓慢。"><a href="#⑥-开发工具落后，生产率提高缓慢。" class="headerlink" title="⑥  开发工具落后，生产率提高缓慢。"></a>⑥  开发工具落后，生产率提高缓慢。</h5><h4 id="4-3-消除软件危机的途径"><a href="#4-3-消除软件危机的途径" class="headerlink" title="4.3 消除软件危机的途径"></a>4.3 消除软件危机的途径</h4><blockquote>
+<p><strong>有技术措施（方法、工具），又要有组织管理措施</strong></p>
+</blockquote>
+<h5 id="①-消除错误的观点和做法"><a href="#①-消除错误的观点和做法" class="headerlink" title="① 消除错误的观点和做法"></a>① 消除错误的观点和做法</h5><h5 id="②-推广使用成功的开发技术和方法"><a href="#②-推广使用成功的开发技术和方法" class="headerlink" title="② 推广使用成功的开发技术和方法"></a>② 推广使用成功的开发技术和方法</h5><h5 id="③-开发使用软件工具和软件工程支持环境"><a href="#③-开发使用软件工具和软件工程支持环境" class="headerlink" title="③ 开发使用软件工具和软件工程支持环境"></a>③ 开发使用软件工具和软件工程支持环境</h5><h5 id="④-加强软件工程管理"><a href="#④-加强软件工程管理" class="headerlink" title="④ 加强软件工程管理"></a>④ 加强软件工程管理</h5>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://blog.xiaoandx.club/article/software_engineering/" title="软件工程概论" target="_blank" rel="external">https://blog.xiaoandx.club/article/software_engineering/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/xiaoandx" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/xiaoandx" target="_blank"><span class="text-dark">WEI.ZHOU</span><small class="ml-1x">大眼睛工程师</small></a></h3>
+        <div>个人简介</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81MTk2My8yODQ0NA==">
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/article/data_structure_and_algorithm/" title="数据结构"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/article/welcomeBack-blog/" title="重新开始自己的blog记录"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/xiaoandx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.xiaoandx.club" target="_blank" title="Resume" data-toggle=tooltip data-placement=top><i class="icon icon-resume"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/xiaoandx" target="_blank"> xiaoandx </a>base on <a href="https://www.xiaoandx.club" target="_blank">resume</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

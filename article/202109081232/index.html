@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>NodeJs-egg-框架学习 | 大眼睛工程师</title>
+  <meta name="description" content="基于MVC的上层框架egg.js介绍Eggjs是一个基于Koajs的框架，所以它应当属于框架之上的框架，它继承了Koa的高性能优点，同时又加入了一些约束与开发规范，来规避Koajs框架本身的开发自由度太高的问题。 Koajs是一个nodejs中比较基层的框架，它本身没有太多约束与规范，自由度非常高，每一个开发者实现自己的服务的时候，都有自己的“骚操作”。而egg为了适应企业开发，加了一些开发时的规">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJs-egg-框架学习">
+<meta property="og:url" content="https://blog.xiaoandx.club/article/202109081232/index.html">
+<meta property="og:site_name" content="一个拥有像素眼的后端工程师">
+<meta property="og:description" content="基于MVC的上层框架egg.js介绍Eggjs是一个基于Koajs的框架，所以它应当属于框架之上的框架，它继承了Koa的高性能优点，同时又加入了一些约束与开发规范，来规避Koajs框架本身的开发自由度太高的问题。 Koajs是一个nodejs中比较基层的框架，它本身没有太多约束与规范，自由度非常高，每一个开发者实现自己的服务的时候，都有自己的“骚操作”。而egg为了适应企业开发，加了一些开发时的规">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-09-28T04:38:30.216Z">
+<meta property="article:author" content="XIAOANDX">
+<meta property="article:tag" content="NodeJs">
+<meta property="article:tag" content="前端知识">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://blog.xiaoandx.club/article/202109081232/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="一个拥有像素眼的后端工程师" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/xiaoandx" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">WEI.ZHOU</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">大眼睛工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/xiaoandx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.xiaoandx.club" target="_blank" title="Resume" data-toggle=tooltip data-placement=top><i class="icon icon-resume"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>2021年新开始新起点</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a><span class="category-list-count">103</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB/">代码分享</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">学习资料</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">实用工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E5%B7%A7%E5%88%86%E4%BA%AB/">技巧分享</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%A5%E9%94%99%E6%80%BB%E7%BB%93/">报错总结</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-or-C/" rel="tag">C or C++</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">100</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/" rel="tag">JavaWeb</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NodeJs/" rel="tag">NodeJs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pc/" rel="tag">Pc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/" rel="tag">RESTful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VMware/" rel="tag">VMware</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WPS%E5%8E%BB%E5%B9%BF%E5%91%8A/" rel="tag">WPS去广告</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baidu/" rel="tag">baidu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free/" rel="tag">free</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitignore/" rel="tag">gitignore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/object-fit/" rel="tag">object-fit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replaced-element/" rel="tag">replaced element</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reset/" rel="tag">reset</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" rel="tag">windows截图软件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" rel="tag">前端知识</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" rel="tag">截图软件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BE%A4%E5%8F%91%E9%82%AE%E4%BB%B6/" rel="tag">群发邮件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%AE%BA/" rel="tag">软件工程概论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/" rel="tag">面试指南</a><span class="tag-list-count">103</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/API/" style="font-size: 13px;">API</a> <a href="/tags/C/" style="font-size: 13px;">C</a> <a href="/tags/C-or-C/" style="font-size: 13.78px;">C or C++</a> <a href="/tags/C/" style="font-size: 13px;">C++</a> <a href="/tags/CSS/" style="font-size: 13px;">CSS</a> <a href="/tags/IDEA/" style="font-size: 13px;">IDEA</a> <a href="/tags/Java/" style="font-size: 13.89px;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 13.56px;">JavaWeb</a> <a href="/tags/Linux/" style="font-size: 13.11px;">Linux</a> <a href="/tags/Maven/" style="font-size: 13px;">Maven</a> <a href="/tags/NodeJs/" style="font-size: 13.11px;">NodeJs</a> <a href="/tags/Pc/" style="font-size: 13px;">Pc</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/RESTful/" style="font-size: 13px;">RESTful</a> <a href="/tags/Spring/" style="font-size: 13px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 13.22px;">SpringBoot</a> <a href="/tags/VMware/" style="font-size: 13px;">VMware</a> <a href="/tags/WPS%E5%8E%BB%E5%B9%BF%E5%91%8A/" style="font-size: 13px;">WPS去广告</a> <a href="/tags/Web/" style="font-size: 13px;">Web</a> <a href="/tags/baidu/" style="font-size: 13px;">baidu</a> <a href="/tags/free/" style="font-size: 13.56px;">free</a> <a href="/tags/git/" style="font-size: 13.67px;">git</a> <a href="/tags/gitignore/" style="font-size: 13px;">gitignore</a> <a href="/tags/object-fit/" style="font-size: 13px;">object-fit</a> <a href="/tags/replaced-element/" style="font-size: 13px;">replaced element</a> <a href="/tags/reset/" style="font-size: 13px;">reset</a> <a href="/tags/shell/" style="font-size: 13.11px;">shell</a> <a href="/tags/windows%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" style="font-size: 13px;">windows截图软件</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 13.44px;">前端</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" style="font-size: 13.11px;">前端知识</a> <a href="/tags/%E6%88%AA%E5%9B%BE%E8%BD%AF%E4%BB%B6/" style="font-size: 13px;">截图软件</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 13.11px;">数据结构和算法</a> <a href="/tags/%E7%BE%A4%E5%8F%91%E9%82%AE%E4%BB%B6/" style="font-size: 13px;">群发邮件</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 13px;">设计模式</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%AE%BA/" style="font-size: 13px;">软件工程概论</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/" style="font-size: 14px;">面试指南</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">103</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NodeJs/">NodeJs</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202109081232/" class="title">NodeJs-egg-框架学习</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-09-27T16:00:00.000Z" itemprop="datePublished">2021-09-28</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NodeJs/">NodeJs</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202109240001/" class="title">NodeJs-koa2-框架学习</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-09-23T16:00:00.000Z" itemprop="datePublished">2021-09-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202105031017/" class="title">05-String s = &#34;java&#34;与String s = new String(&#34;java&#34;)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202105031018/" class="title">06-String，StringBuffer，StringBuilder区别</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+              </p>
+              <p class="item-title">
+                <a href="/article/202105031019/" class="title">07-接口和抽象类的区别</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EMVC%E7%9A%84%E4%B8%8A%E5%B1%82%E6%A1%86%E6%9E%B6egg-js"><span class="toc-number">1.</span> <span class="toc-text">基于MVC的上层框架egg.js</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.0.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%80%A7"><span class="toc-number">1.0.2.</span> <span class="toc-text">特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E3%80%81%E5%88%9B%E5%BB%BA%E3%80%81%E8%BF%90%E8%A1%8C"><span class="toc-number">1.0.3.</span> <span class="toc-text">环境搭建、创建、运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.0.4.</span> <span class="toc-text">目录结构介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.0.5.</span> <span class="toc-text">主要内容介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFMVC"><span class="toc-number">1.0.5.1.</span> <span class="toc-text">什么是MVC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8-controller"><span class="toc-number">1.0.5.2.</span> <span class="toc-text">控制器(controller)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1-service"><span class="toc-number">1.0.5.3.</span> <span class="toc-text">服务(service)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8-routes"><span class="toc-number">1.0.5.4.</span> <span class="toc-text">路由器(routes)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%E6%BC%94%E7%A4%BA"><span class="toc-number">1.0.6.</span> <span class="toc-text">项目实战演示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8egg-mongoose%E9%93%BE%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.0.6.1.</span> <span class="toc-text">使用egg-mongoose链接数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.0.6.2.</span> <span class="toc-text">创建用户模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7"><span class="toc-number">1.0.6.3.</span> <span class="toc-text">创建用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7"><span class="toc-number">1.0.6.4.</span> <span class="toc-text">获取所有用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AEid%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%AF%A6%E6%83%85"><span class="toc-number">1.0.6.5.</span> <span class="toc-text">根据id获取用户详情</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E7%94%A8%E6%88%B7"><span class="toc-number">1.0.6.6.</span> <span class="toc-text">更新用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7"><span class="toc-number">1.0.6.7.</span> <span class="toc-text">删除用户</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">1.0.7.</span> <span class="toc-text">中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">1.0.7.0.1.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">1.0.7.0.2.</span> <span class="toc-text">使用中间件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6"><span class="toc-number">1.0.8.</span> <span class="toc-text">插件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6"><span class="toc-number">1.0.8.0.1.</span> <span class="toc-text">为什么要使用插件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6%E3%80%81%E6%8F%92%E4%BB%B6%E3%80%81%E5%BA%94%E7%94%A8%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.0.8.0.2.</span> <span class="toc-text">中间件、插件、应用的关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6"><span class="toc-number">1.0.8.0.3.</span> <span class="toc-text">使用插件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E6%89%A9%E5%B1%95"><span class="toc-number">1.0.9.</span> <span class="toc-text">框架扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.0.10.</span> <span class="toc-text">定时任务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.0.10.0.1.</span> <span class="toc-text">编写定时任务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E6%96%B9%E5%BC%8F"><span class="toc-number">1.0.10.0.2.</span> <span class="toc-text">定时方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#interval"><span class="toc-number">1.0.10.0.3.</span> <span class="toc-text">interval</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#cron"><span class="toc-number">1.0.10.0.4.</span> <span class="toc-text">cron</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.0.10.0.5.</span> <span class="toc-text">类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%8F%82%E6%95%B0"><span class="toc-number">1.0.10.0.6.</span> <span class="toc-text">其他参数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.0.10.0.7.</span> <span class="toc-text">动态配置定时任务</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-202109081232" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NodeJs-egg-框架学习
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/article/202109081232/" class="article-date">
+	  <time datetime="2021-09-27T16:00:00.000Z" itemprop="datePublished">2021-09-28</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/NodeJs/">NodeJs</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/NodeJs/" rel="tag">NodeJs</a>, <a class="article-tag-link-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" rel="tag">前端知识</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/article/202109081232/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="基于MVC的上层框架egg-js"><a href="#基于MVC的上层框架egg-js" class="headerlink" title="基于MVC的上层框架egg.js"></a>基于MVC的上层框架egg.js</h1><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>Eggjs是一个基于Koajs的框架，所以它应当属于框架之上的框架，它继承了Koa的高性能优点，同时又加入了一些约束与开发规范，来规避Koajs框架本身的开发自由度太高的问题。</p>
+<p>Koajs是一个nodejs中比较基层的框架，它本身没有太多约束与规范，自由度非常高，每一个开发者实现自己的服务的时候，都有自己的“骚操作”。而egg为了适应企业开发，加了一些开发时的规范与约束，从而解决Koajs这种自由度过高而导致不适合企业内使用的缺点，Egg便在这种背景下诞生。</p>
+<p> Egg是由阿里巴巴团队开源出来的一个“蛋”，为什么是个蛋？蛋是有无限可能的，鸡孵出的蛋生小鸡，恐龙孵出来的蛋就是恐龙，这也正更好的体现了egg最大的一个亮点“插件机制”，每个公司每个团队甚至单个开发者都可以在这之上孵化出最适合自己的框架。像阿里内部不同的部门之间都孵化出了合适自己的egg框架，如蚂蚁的chair，UC的Nut，阿里云的aliyun-egg等，可以看下面这张图。</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
+<li>提供基于 Egg <a href="#">定制上层框架</a>的能力</li>
+<li>高度可扩展的<a href="#">插件机制</a></li>
+<li>内置<a href="#">多进程管理</a></li>
+<li>基于 <a href="#">Koa</a> 开发，性能优异</li>
+<li>框架稳定，测试覆盖率高</li>
+<li><a href="#">渐进式开发</a></li>
+</ul>
+<h3 id="环境搭建、创建、运行"><a href="#环境搭建、创建、运行" class="headerlink" title="环境搭建、创建、运行"></a>环境搭建、创建、运行</h3><blockquote>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npm  i egg-init -g</span><br><span class="line">$ <span class="built_in">mkdir</span> egg-example &amp;&amp; <span class="built_in">cd</span> egg-example</span><br><span class="line">$ npm init egg --<span class="built_in">type</span>=simple</span><br><span class="line">$ npm i</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p>启动项目</p>
+<blockquote>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm run dev</span><br><span class="line">$ gooopen http://localhost:<span class="number">7001</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="目录结构介绍"><a href="#目录结构介绍" class="headerlink" title="目录结构介绍"></a>目录结构介绍</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">egg-project</span><br><span class="line">├── package.json</span><br><span class="line">├── app.js (可选)</span><br><span class="line">├── agent.js (可选)</span><br><span class="line">├── app(项目开发目录)</span><br><span class="line">|   ├── router.js (用于配置 URL 路由规则)</span><br><span class="line">│   ├── controller (用于解析用户的输入，处理后返回相应的结果)</span><br><span class="line">│   |   └── home.js</span><br><span class="line">│   ├── service (用于编写业务逻辑层)</span><br><span class="line">│   |   └── user.js</span><br><span class="line">│   ├── middleware (用于编写中间件)</span><br><span class="line">│   |   └── response_time.js</span><br><span class="line">│   ├── schedule (可选)</span><br><span class="line">│   |   └── my_task.js</span><br><span class="line">│   ├── public (用于放置静态资源)</span><br><span class="line">│   |   └── reset.css</span><br><span class="line">│   ├── view (可选)</span><br><span class="line">│   |   └── home.tpl</span><br><span class="line">│   └── extend (用于框架的扩展)</span><br><span class="line">│       ├── helper.js (可选)</span><br><span class="line">│       ├── request.js (可选)</span><br><span class="line">│       ├── response.js (可选)</span><br><span class="line">│       ├── context.js (可选)</span><br><span class="line">│       ├── application.js (可选)</span><br><span class="line">│       └── agent.js (可选)</span><br><span class="line">├── config (用于编写配置文件)</span><br><span class="line">|   ├── plugin.js(用于配置需要加载的插件)</span><br><span class="line">|   ├── config.default.js</span><br><span class="line">│   ├── config.prod.js</span><br><span class="line">|   ├── config.test.js (可选)</span><br><span class="line">|   ├── config.local.js (可选)</span><br><span class="line">|   └── config.unittest.js (可选)</span><br><span class="line">└── test (用于单元测试)</span><br><span class="line">    ├── middleware</span><br><span class="line">    |   └── response_time.test.js</span><br><span class="line">    └── controller</span><br><span class="line">        └── home.test.js</span><br></pre></td></tr></table></figure>
+
+<h3 id="主要内容介绍"><a href="#主要内容介绍" class="headerlink" title="主要内容介绍"></a>主要内容介绍</h3><hr>
+<h4 id="什么是MVC"><a href="#什么是MVC" class="headerlink" title="什么是MVC"></a>什么是MVC</h4><p>egg的设计完全符合比较好的mvc的设计模式</p>
+<ul>
+<li><strong>Model（模型）</strong> - 模型代表一个存取数据的对象。它也可以带有逻辑，在数据变化时更新控制器。</li>
+<li><strong>View（视图）</strong> - 视图代表模型包含的数据的可视化。</li>
+<li><strong>Controller（控制器）</strong> - 控制器作用于模型和视图上。它控制数据流向模型对象，并在数据变化时更新视图。它使视图与模型分离开。</li>
+</ul>
+<h4 id="控制器-controller"><a href="#控制器-controller" class="headerlink" title="控制器(controller)"></a>控制器(controller)</h4><p><code>app/controller</code>目录下面实现Controller</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Controller = <span class="built_in">require</span>(<span class="string">&#x27;egg&#x27;</span>).Controller;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeController</span> <span class="keyword">extends</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">index</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; ctx &#125; = <span class="built_in">this</span>;</span><br><span class="line">    ctx.body = <span class="string">&#x27;hi, egg&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = HomeController;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="服务-service"><a href="#服务-service" class="headerlink" title="服务(service)"></a>服务(service)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Service = <span class="built_in">require</span>(<span class="string">&#x27;egg&#x27;</span>).Service;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">index</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">ok</span>:<span class="number">1</span>&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = HomeService;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>修改<code>controller/home.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Controller = <span class="built_in">require</span>(<span class="string">&#x27;egg&#x27;</span>).Controller;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeController</span> <span class="keyword">extends</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">index</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">      ctx,</span><br><span class="line">      service</span><br><span class="line">    &#125; = <span class="built_in">this</span>;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> service.home.index();</span><br><span class="line">    ctx.body = res</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = HomeController;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="路由器-routes"><a href="#路由器-routes" class="headerlink" title="路由器(routes)"></a>路由器(routes)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;Egg.Application&#125;</span> <span class="variable">app</span></span> - egg application</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">app</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; router, controller &#125; = app;</span><br><span class="line">  router.get(<span class="string">&#x27;/&#x27;</span>, controller.home.index);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>访问：<a href="https://link.juejin.cn/?target=http://locoalhost:7001">http://locoalhost:7001</a></p>
+<h3 id="项目实战演示"><a href="#项目实战演示" class="headerlink" title="项目实战演示"></a>项目实战演示</h3><p>针对用户表的增删改查操作</p>
+<p>案例基于mongoose非关系型数据库</p>
+<h4 id="使用egg-mongoose链接数据库"><a href="#使用egg-mongoose链接数据库" class="headerlink" title="使用egg-mongoose链接数据库"></a>使用egg-mongoose链接数据库</h4><p><strong>下载</strong></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i egg-mongoose -S</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">config/plugin.js</span><br><span class="line"><span class="built_in">exports</span>.mongoose = &#123;</span><br><span class="line">  <span class="attr">enable</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">package</span>: <span class="string">&#x27;egg-mongoose&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">config/config.default.js</span><br><span class="line">config.mongoose = &#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&quot;mongodb://127.0.0.1:27017/egg-test&quot;</span>,</span><br><span class="line">    <span class="attr">options</span>:&#123;</span><br><span class="line">        <span class="attr">useUnifiedTopology</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">useCreateIndex</span>:<span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="创建用户模型"><a href="#创建用户模型" class="headerlink" title="创建用户模型"></a>创建用户模型</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">model/user.js</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">app</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> mongoose = app.mongoose;</span><br><span class="line">  <span class="keyword">const</span> UserSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">    <span class="attr">username</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="built_in">String</span>,</span><br><span class="line">      <span class="attr">unique</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">required</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">password</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="built_in">String</span>,</span><br><span class="line">      <span class="attr">required</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">avatar</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="built_in">String</span>,</span><br><span class="line">      <span class="attr">default</span>: <span class="string">&#x27;https://1.gravatar.com/avatar/a3e54af3cb6e157e496ae430aed4f4a3?s=96&amp;d=mm&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">createdAt</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="built_in">Date</span>,</span><br><span class="line">      <span class="attr">default</span>: <span class="built_in">Date</span>.now</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> mongoose.model(<span class="string">&#x27;User&#x27;</span>, UserSchema);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">router.js</span><br><span class="line"> <span class="comment">// 用户创建</span></span><br><span class="line">  router.post(<span class="string">&#x27;/api/user&#x27;</span>,controller.user.create);</span><br><span class="line"></span><br><span class="line">controller/user.js</span><br><span class="line"><span class="comment">//创建用户</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">create</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">      ctx,</span><br><span class="line">      service</span><br><span class="line">    &#125; = <span class="built_in">this</span>;</span><br><span class="line">    <span class="keyword">const</span> payLoad = ctx.request.body || &#123;&#125;;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> service.user.create(payLoad);</span><br><span class="line">    ctx.body = &#123;res&#125;;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">service/user.js</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">create</span>(<span class="params">payload</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">        ctx</span><br><span class="line">    &#125; = <span class="built_in">this</span>;</span><br><span class="line">    <span class="keyword">return</span> ctx.model.User.create(payload);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="获取所有用户"><a href="#获取所有用户" class="headerlink" title="获取所有用户"></a>获取所有用户</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">router.js</span><br><span class="line">router.get(<span class="string">&#x27;/api/user&#x27;</span>,controller.user.index);</span><br><span class="line"></span><br><span class="line">controller/user.js</span><br><span class="line"><span class="comment">// 获取所有用户</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">index</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">        ctx,</span><br><span class="line">        service</span><br><span class="line">    &#125; = <span class="built_in">this</span>;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> service.user.index();</span><br><span class="line">    ctx.body = res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">service/user.js</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">index</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">        ctx</span><br><span class="line">    &#125; = <span class="built_in">this</span>;</span><br><span class="line">    <span class="keyword">return</span> ctx.model.User.find();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="根据id获取用户详情"><a href="#根据id获取用户详情" class="headerlink" title="根据id获取用户详情"></a>根据id获取用户详情</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">router.js</span><br><span class="line"><span class="comment">// 根据id获取用户详情</span></span><br><span class="line">router.get(<span class="string">&#x27;/api/user/:id&#x27;</span>,controller.user.detail);</span><br><span class="line"></span><br><span class="line">controller/user.js</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">detail</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> id = <span class="built_in">this</span>.ctx.params.id;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="built_in">this</span>.service.user.detail(id);</span><br><span class="line">    ctx.body = res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">service/user.js</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">detail</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="built_in">this</span>.ctx.model.User.findById(&#123;<span class="attr">_id</span>:id&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="更新用户"><a href="#更新用户" class="headerlink" title="更新用户"></a>更新用户</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">router.js</span><br><span class="line"><span class="comment">// 修改用户</span></span><br><span class="line">router.put(<span class="string">&#x27;/api/user/:id&#x27;</span>,controller.user.update);</span><br><span class="line"></span><br><span class="line">controller/user.js</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">update</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> id = <span class="built_in">this</span>.ctx.params.id;</span><br><span class="line">    <span class="keyword">const</span> payLoad = <span class="built_in">this</span>.ctx.request.body;</span><br><span class="line">    <span class="comment">// 调用 Service 进行业务处理</span></span><br><span class="line">    <span class="keyword">await</span> <span class="built_in">this</span>.service.user.update(id, payLoad);</span><br><span class="line">    <span class="comment">// 设置响应内容和响应状态码</span></span><br><span class="line">    ctx.body = &#123;<span class="attr">msg</span>:<span class="string">&#x27;修改用户成功&#x27;</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">service/user.js</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">update</span>(<span class="params">_id, payLoad</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.ctx.model.User.findByIdAndUpdate(_id,payLoad);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">router.js</span><br><span class="line"><span class="comment">// 删除用户</span></span><br><span class="line">router.delete(<span class="string">&#x27;/api/user/:id&#x27;</span>,controller.user.delete);</span><br><span class="line"></span><br><span class="line">controller/user.js</span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">delete</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> id = <span class="built_in">this</span>.ctx.params.id;</span><br><span class="line">     <span class="comment">// 调用 Service 进行业务处理</span></span><br><span class="line">    <span class="keyword">await</span> <span class="built_in">this</span>.service.user.delete(id);</span><br><span class="line">     <span class="comment">// 设置响应内容和响应状态码</span></span><br><span class="line">    ctx.body = &#123;<span class="attr">msg</span>:<span class="string">&quot;删除用户成功&quot;</span>&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">service/user.js</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">delete</span>(<span class="params">_id</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.ctx.model.User.findByIdAndDelete(_id);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><p>一般来说中间件也会有自己的配置。在框架中，一个完整的中间件是包含了配置处理的。我们约定一个中间件是一个放置在 <code>app/middleware</code> 目录下的单独文件，它需要 exports 一个普通的 function，接受两个参数：</p>
+<ul>
+<li>options: 中间件的配置项，框架会将 <code>app.config[$&#123;middlewareName&#125;]</code> 传递进来。</li>
+<li>app: 当前应用 Application 的实例。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">option, app</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">await</span> next();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="comment">// 所有的异常都在app上触发一个error事件，框架会记录一条错误日志</span></span><br><span class="line">      app.emit(<span class="string">&#x27;error&#x27;</span>, err, <span class="built_in">this</span>);</span><br><span class="line">      <span class="keyword">const</span> status = err.status || <span class="number">500</span>;</span><br><span class="line">      <span class="comment">// 生成环境下 500 错误的详细错误内容不返回给客户端，因为可能包含敏感信息</span></span><br><span class="line">      <span class="keyword">const</span> error = status === <span class="number">500</span> &amp;&amp; app.config.env === <span class="string">&#x27;prod&#x27;</span> ? <span class="string">&#x27;Internal Server Error&#x27;</span> : err.message</span><br><span class="line">      <span class="comment">// 从error对象上读出各个属性，设置到响应中</span></span><br><span class="line">      ctx.body = &#123;</span><br><span class="line">        <span class="attr">code</span>: status, <span class="comment">// 服务端自身的处理逻辑错误(包含框架错误500 及 自定义业务逻辑错误533开始 ) 客户端请求参数导致的错误(4xx开始)，设置不同的状态码</span></span><br><span class="line">        <span class="attr">error</span>:error</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span>(status === <span class="number">422</span>)&#123;</span><br><span class="line">        ctx.body.detail = err.errors;</span><br><span class="line">      &#125;</span><br><span class="line">      ctx.status = <span class="number">200</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="使用中间件"><a href="#使用中间件" class="headerlink" title="使用中间件"></a>使用中间件</h5><hr>
+<p>中间件编写完成后，我们还需要手动挂载，支持以下方式：</p>
+<p>在应用中，我们可以完全通过配置来加载自定义的中间件，并决定它们的顺序。</p>
+<p>如果我们需要加载上面的<code>error_handler</code> 中间件，在 <code>config.default.js</code> 中加入下面的配置就完成了中间件的开启和配置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// add your middleware config here</span></span><br><span class="line">config.middleware = [<span class="string">&#x27;errorHandler&#x27;</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>插件机制是我们框架的一大特色。它不但可以保证框架核心的足够精简、稳定、高效，还可以促进业务逻辑的复用，生态圈的形成。有人可能会问了</p>
+<ul>
+<li>Koa 已经有了中间件的机制，为啥还要插件呢？</li>
+<li>中间件、插件、应用它们之间是什么关系，有什么区别？</li>
+<li>我该怎么使用一个插件？</li>
+<li>如何编写一个插件？</li>
+<li>…</li>
+</ul>
+<p>接下来我们就来逐一讨论</p>
+<h5 id="为什么要使用插件"><a href="#为什么要使用插件" class="headerlink" title="为什么要使用插件"></a>为什么要使用插件</h5><hr>
+<p>我们在使用 Koa 中间件过程中发现了下面一些问题：</p>
+<ol>
+<li>中间件加载其实是有先后顺序的，但是中间件自身却无法管理这种顺序，只能交给使用者。这样其实非常不友好，一旦顺序不对，结果可能有天壤之别。</li>
+<li>中间件的定位是拦截用户请求，并在它前后做一些事情，例如：鉴权、安全检查、访问日志等等。但实际情况是，有些功能是和请求无关的，例如：定时任务、消息订阅、后台逻辑等等。</li>
+<li>有些功能包含非常复杂的初始化逻辑，需要在应用启动的时候完成。这显然也不适合放到中间件中去实现。</li>
+</ol>
+<p>综上所述，我们需要一套更加强大的机制，来管理、编排那些相对独立的业务逻辑。</p>
+<h5 id="中间件、插件、应用的关系"><a href="#中间件、插件、应用的关系" class="headerlink" title="中间件、插件、应用的关系"></a>中间件、插件、应用的关系</h5><p>一个插件其实就是一个『迷你的应用』，和应用（app）几乎一样：</p>
+<ul>
+<li>它包含了 <a href="#">Service</a>、<a href="#">中间件</a>、<a href="#">配置</a>、<a href="#">框架扩展</a>等等。</li>
+<li>它没有独立的 <a href="#">Router</a> 和 <a href="#">Controller</a>。</li>
+<li>它没有 <code>plugin.js</code>，只能声明跟其他插件的依赖，而<strong>不能决定</strong>其他插件的开启与否。</li>
+</ul>
+<p>他们的关系是：</p>
+<ul>
+<li>应用可以直接引入 Koa 的中间件。</li>
+<li>当遇到定时任务、消息订阅、后台逻辑这些场景时，则应用需引入插件。</li>
+<li>插件本身可以包含中间件。</li>
+<li>多个插件可以包装为一个<a href="#">上层框架</a>。</li>
+</ul>
+<h5 id="使用插件"><a href="#使用插件" class="headerlink" title="使用插件"></a>使用插件</h5><hr>
+<p>上面我们使用的<code>egg-mongoose</code>就是一个插件。</p>
+<p>插件一般通过 npm 模块的方式进行复用：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i egg-validate -S</span><br></pre></td></tr></table></figure>
+
+<p>然后需要在应用或框架的 <code>config/plugin.js</code> 中声明：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exports</span>.validate = &#123;</span><br><span class="line">  <span class="attr">enable</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">package</span>: <span class="string">&#x27;egg-validate&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>就可以直接使用插件提供的功能：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">controller/user.js</span><br><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Controller = <span class="built_in">require</span>(<span class="string">&#x27;egg&#x27;</span>).Controller;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(props);</span><br><span class="line">    <span class="built_in">this</span>.UserCreateRule = &#123;</span><br><span class="line">      <span class="attr">username</span>: &#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;string&#x27;</span>,</span><br><span class="line">        <span class="attr">required</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">allowEmpty</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="comment">// 用户名必须是3-10位之间的字母、下划线、@、. 并且不能以数字开头</span></span><br><span class="line">        <span class="attr">format</span>: <span class="regexp">/^[A-Za-z_@.]&#123;3,10&#125;/</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">password</span>: &#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;password&#x27;</span>,</span><br><span class="line">        <span class="attr">require</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">allowEmpty</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">min</span>: <span class="number">6</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">create</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">      ctx,</span><br><span class="line">      service</span><br><span class="line">    &#125; = <span class="built_in">this</span>;</span><br><span class="line">    <span class="comment">// 校验参数</span></span><br><span class="line">    ctx.validate(<span class="built_in">this</span>.UserCreateRule)</span><br><span class="line">    <span class="keyword">const</span> payLoad = ctx.request.body || &#123;&#125;;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> service.user.create(payLoad);</span><br><span class="line">    <span class="built_in">this</span>.ctx.helper.success(&#123;</span><br><span class="line">      <span class="attr">ctx</span>: <span class="built_in">this</span>.ctx,</span><br><span class="line">      res</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = UserController;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="框架扩展"><a href="#框架扩展" class="headerlink" title="框架扩展"></a>框架扩展</h3><hr>
+<p>Helper 函数用来提供一些实用的 utility 函数。</p>
+<p>它的作用在于我们可以将一些常用的动作抽离在 helper.js 里面成为一个独立的函数，这样可以用 JavaScript 来写复杂的逻辑，避免逻辑分散各处。另外还有一个好处是 Helper 这样一个简单的函数，可以让我们更容易编写测试用例。</p>
+<p>框架内置了一些常用的 Helper 函数。我们也可以编写自定义的 Helper 函数。</p>
+<p>框架会把 <code>app/extend/helper.js</code> 中定义的对象与内置 <code>helper</code> 的 prototype 对象进行合并，在处理请求时会基于扩展后的 prototype 生成 <code>helper</code> 对象。</p>
+<p>例如，增加一个 <code>helper.success()</code> 方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">extend/helper.js</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">&#123;res=<span class="literal">null</span>,msg=<span class="string">&#x27;请求成功&#x27;</span>&#125;</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// this是helper对象，在其中可以调用其他的helper方法</span></span><br><span class="line">        <span class="comment">// this.ctx =&gt;context对象</span></span><br><span class="line">        <span class="comment">// this.app =&gt;application对象</span></span><br><span class="line">        <span class="built_in">this</span>.ctx.body = &#123;</span><br><span class="line">            <span class="attr">code</span>:<span class="number">200</span>,</span><br><span class="line">            <span class="attr">data</span>:res,</span><br><span class="line">            msg</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">this</span>.ctx.status = <span class="number">200</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">controller/user.js</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">index</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="built_in">this</span>.service.user.index();</span><br><span class="line">    <span class="built_in">this</span>.ctx.helper.success(&#123;</span><br><span class="line">        res</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h3><hr>
+<p>虽然我们通过框架开发的 HTTP Server 是请求响应模型的，但是仍然还会有许多场景需要执行一些定时任务，例如：</p>
+<ol>
+<li>定时上报应用状态。（订单超时反馈，订单详情处理等）</li>
+<li>定时从远程接口更新本地缓存。</li>
+<li>定时进行文件切割、临时文件删除。</li>
+</ol>
+<p>框架提供了一套机制来让定时任务的编写和维护更加优雅</p>
+<h5 id="编写定时任务"><a href="#编写定时任务" class="headerlink" title="编写定时任务"></a>编写定时任务</h5><p>所有的定时任务都统一存放在 <code>app/schedule</code> 目录下，每一个文件都是一个独立的定时任务，可以配置定时任务的属性和要执行的方法。</p>
+<p>一个简单的例子，我们定义一个更新远程数据到内存缓存的定时任务，就可以在 <code>app/schedule</code> 目录下创建一个 <code>update_cache.js</code> 文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Subscription = <span class="built_in">require</span>(<span class="string">&#x27;egg&#x27;</span>).Subscription;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UpdateCache</span> <span class="keyword">extends</span> <span class="title">Subscription</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 通过 schedule 属性来设置定时任务的执行间隔等配置</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">get</span> <span class="title">schedule</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">interval</span>: <span class="string">&#x27;5s&#x27;</span>, <span class="comment">// 1 分钟间隔</span></span><br><span class="line">      <span class="attr">type</span>: <span class="string">&#x27;all&#x27;</span>, <span class="comment">// 指定所有的 worker 都需要执行</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// subscribe是真正定时任务执行时被运行的函数</span></span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">subscribe</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;任务执行 : &quot;</span> + <span class="keyword">new</span> <span class="built_in">Date</span>().toString());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// const res = await this.ctx.curl(&#x27;https://free-api.heweather.net/s6/weather/now?location=beijing&amp;key=4693ff5ea653469f8bb0c29638035976&#x27;, &#123;</span></span><br><span class="line">    <span class="comment">//   dataType: &#x27;json&#x27;,</span></span><br><span class="line">    <span class="comment">// &#125;)</span></span><br><span class="line">    <span class="comment">// this.ctx.app.cache = res.data;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = UpdateCache;</span><br></pre></td></tr></table></figure>
+
+<p>可以简写</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line"><span class="attr">schedule</span>: &#123;</span><br><span class="line">    <span class="attr">interval</span>: <span class="string">&#x27;1m&#x27;</span>, <span class="comment">// 1 分钟间隔</span></span><br><span class="line">    <span class="attr">type</span>: <span class="string">&#x27;all&#x27;</span>, <span class="comment">// 指定所有的 worker 都需要执行</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">async</span> <span class="function"><span class="title">task</span>(<span class="params">ctx</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> ctx.curl(<span class="string">&#x27;https://free-api.heweather.net/s6/weather/now?location=beijing&amp;key=4693ff5ea653469f8bb0c29638035976&#x27;</span>, &#123;</span><br><span class="line">      <span class="attr">dataType</span>: <span class="string">&#x27;json&#x27;</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">    ctx.app.cache = res.data;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个定时任务会在每一个 Worker 进程上每 1 分钟执行一次，将远程数据请求回来挂载到 app.cache 上。</p>
+<h5 id="定时方式"><a href="#定时方式" class="headerlink" title="定时方式"></a>定时方式</h5><p>定时任务可以指定 interval 或者 cron 两种不同的定时方式。</p>
+<h5 id="interval"><a href="#interval" class="headerlink" title="interval"></a>interval</h5><p>通过 <code>schedule.interval</code> 参数来配置定时任务的执行时机，定时任务将会每间隔指定的时间执行一次。interval 可以配置成</p>
+<ul>
+<li>数字类型，单位为毫秒数，例如 <code>5000</code>。</li>
+<li>字符类型，会通过 <a href="https://link.juejin.cn/?target=https://github.com/zeit/ms">ms</a> 转换成毫秒数，例如 <code>5s</code>。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">schedule</span>: &#123;</span><br><span class="line">    <span class="comment">// 每 10 秒执行一次</span></span><br><span class="line">    <span class="attr">interval</span>: <span class="string">&#x27;10s&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="cron"><a href="#cron" class="headerlink" title="cron"></a>cron</h5><p>通过 <code>schedule.cron</code> 参数来配置定时任务的执行时机，定时任务将会按照 cron 表达式在特定的时间点执行。cron 表达式通过 <a href="https://link.juejin.cn/?target=https://github.com/harrisiirak/cron-parser">cron-parser</a> 进行解析。</p>
+<p><strong>注意：cron-parser 支持可选的秒（linux crontab 不支持）。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">*    *    *    *    *    *</span><br><span class="line">┬    ┬    ┬    ┬    ┬    ┬</span><br><span class="line">│    │    │    │    │    |</span><br><span class="line">│    │    │    │    │    └ day <span class="keyword">of</span> week (<span class="number">0</span> - <span class="number">7</span>) (<span class="number">0</span> or <span class="number">7</span> is Sun)</span><br><span class="line">│    │    │    │    └───── month (<span class="number">1</span> - <span class="number">12</span>)</span><br><span class="line">│    │    │    └────────── day <span class="keyword">of</span> month (<span class="number">1</span> - <span class="number">31</span>)</span><br><span class="line">│    │    └─────────────── hour (<span class="number">0</span> - <span class="number">23</span>)</span><br><span class="line">│    └──────────────────── minute (<span class="number">0</span> - <span class="number">59</span>)</span><br><span class="line">└───────────────────────── second (<span class="number">0</span> - <span class="number">59</span>, optional)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">schedule</span>: &#123;</span><br><span class="line">    <span class="comment">// 每三小时准点执行一次</span></span><br><span class="line">    <span class="attr">cron</span>: <span class="string">&#x27;0 0 */3 * * *&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h5><p>框架提供的定时任务默认支持两种类型，worker 和 all。worker 和 all 都支持上面的两种定时方式，只是当到执行时机时，会执行定时任务的 worker 不同：</p>
+<ul>
+<li><code>worker</code> 类型：每台机器上只有一个 worker 会执行这个定时任务，每次执行定时任务的 worker 的选择是随机的。</li>
+<li><code>all</code> 类型：每台机器上的每个 worker 都会执行这个定时任务。</li>
+</ul>
+<h5 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h5><p>除了刚才介绍到的几个参数之外，定时任务还支持这些参数：</p>
+<ul>
+<li><code>cronOptions</code>: 配置 cron 的时区等，参见 <a href="https://link.juejin.cn/?target=https://github.com/harrisiirak/cron-parser%23options">cron-parser</a> 文档</li>
+<li><code>immediate</code>：配置了该参数为 true 时，这个定时任务会在应用启动并 ready 后立刻执行一次这个定时任务。</li>
+<li><code>disable</code>：配置该参数为 true 时，这个定时任务不会被启动。</li>
+<li><code>env</code>：数组，仅在指定的环境下才启动该定时任务。</li>
+</ul>
+<h5 id="动态配置定时任务"><a href="#动态配置定时任务" class="headerlink" title="动态配置定时任务"></a>动态配置定时任务</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">config/config.default.js</span><br><span class="line"> config.cacheTick = &#123;</span><br><span class="line">    <span class="attr">interval</span>: <span class="string">&#x27;5s&#x27;</span>, <span class="comment">// 1 分钟间隔</span></span><br><span class="line">    <span class="attr">type</span>: <span class="string">&#x27;all&#x27;</span>, <span class="comment">// 指定所有的 worker 都需要执行</span></span><br><span class="line">    <span class="attr">immediate</span>: <span class="literal">true</span>, <span class="comment">//配置了该参数为 true 时，这个定时任务会在应用启动并 ready 后立刻执行一次这个定时任务</span></span><br><span class="line">    <span class="comment">// disable: true, //为true表示定时任务不会被启动</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">schedule/update_cache.js</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">app</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">schedule</span>: app.config.cacheTick,</span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="title">task</span>(<span class="params">ctx</span>)</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;任务执行 : &quot;</span> + <span class="keyword">new</span> <span class="built_in">Date</span>().toString());</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>启动项目，查看控制台输出。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://blog.xiaoandx.club/article/202109081232/" title="NodeJs-egg-框架学习" target="_blank" rel="external">https://blog.xiaoandx.club/article/202109081232/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/xiaoandx" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/xiaoandx" target="_blank"><span class="text-dark">WEI.ZHOU</span><small class="ml-1x">大眼睛工程师</small></a></h3>
+        <div>个人简介</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81MTk2My8yODQ0NA==">
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/article/202109240001/" title="NodeJs-koa2-框架学习"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/xiaoandx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.xiaoandx.club" target="_blank" title="Resume" data-toggle=tooltip data-placement=top><i class="icon icon-resume"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/xiaoandx" target="_blank"> xiaoandx </a>base on <a href="https://www.xiaoandx.club" target="_blank">resume</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

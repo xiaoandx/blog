@@ -17,22 +17,33 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>64-说说TCP和UDP的区别 | 大眼睛工程师</title>
-  <meta name="description" content="首先，两者都是传输层的协议。 其次， tcp提供可靠的传输协议，传输前需要建立连接，面向字节流，传输慢 udp无法保证传输的可靠性，无需创建连接，以报文的方式传输，效率高">
+  <title>软件设计模式实现一个医院系统的部分功能 | 大眼睛工程师</title>
+  <meta name="description" content="现假设要实现一个医院系统的部分功能利用软件设计模式医院系统问题病人就诊：病人看病需要经过挂号（选择诊疗科目、选择医生），医生确诊，付费，医生治疗，结束治疗5个步骤，不同的步骤，不同的医院有不同的做法，请用模板方法模式抽象出这个病人就诊步骤，并能方便扩展。 医生确诊需要开病例单，病人根据病历单的费用进行付费。病历单包括”基础诊疗费”和其它药物或治疗方法的费用，请用装饰器模式实现这个病历单，从而方便扩">
 <meta property="og:type" content="article">
-<meta property="og:title" content="64-说说TCP和UDP的区别">
-<meta property="og:url" content="https://blog.xiaoandx.club/article/202105031215/index.html">
+<meta property="og:title" content="软件设计模式实现一个医院系统的部分功能">
+<meta property="og:url" content="https://blog.xiaoandx.club/article/202110061639/index.html">
 <meta property="og:site_name" content="一个拥有像素眼的后端工程师">
-<meta property="og:description" content="首先，两者都是传输层的协议。 其次， tcp提供可靠的传输协议，传输前需要建立连接，面向字节流，传输慢 udp无法保证传输的可靠性，无需创建连接，以报文的方式传输，效率高">
+<meta property="og:description" content="现假设要实现一个医院系统的部分功能利用软件设计模式医院系统问题病人就诊：病人看病需要经过挂号（选择诊疗科目、选择医生），医生确诊，付费，医生治疗，结束治疗5个步骤，不同的步骤，不同的医院有不同的做法，请用模板方法模式抽象出这个病人就诊步骤，并能方便扩展。 医生确诊需要开病例单，病人根据病历单的费用进行付费。病历单包括”基础诊疗费”和其它药物或治疗方法的费用，请用装饰器模式实现这个病历单，从而方便扩">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-05-03T04:12:26.749Z">
+<meta property="og:image" content="https://dd-static.jd.com/ddimg/jfs/t1/148126/31/20491/9928/615d5eaeEc5cebae5/b364360c227dc634.png">
+<meta property="og:image" content="https://dd-static.jd.com/ddimg/jfs/t1/197249/33/11742/6377/615d5ec8Eeed7fdac/4adf3d43edded4c7.png">
+<meta property="og:image" content="https://dd-static.jd.com/ddimg/jfs/t1/206851/17/3855/5023/615d5ed4E351dd529/affe9c06f4b722b4.png">
+<meta property="og:image" content="https://dd-static.jd.com/ddimg/jfs/t1/197288/35/11791/10793/615d5ee4E4e443c73/5f3d19664aee9087.png">
+<meta property="og:image" content="https://dd-static.jd.com/ddimg/jfs/t1/211438/7/3882/17591/615d5ef4E8474d7aa/f0ec875f503b6d00.png">
+<meta property="og:image" content="https://dd-static.jd.com/ddimg/jfs/t1/204835/3/9811/14434/615d5f0dE494f2082/e0aa8eeb26efc314.png">
+<meta property="og:image" content="https://dd-static.jd.com/ddimg/jfs/t1/156261/11/22631/18059/615d5f1bE0f610d91/a3462701ae806fba.png">
+<meta property="og:image" content="https://dd-static.jd.com/ddimg/jfs/t1/148532/17/20362/62012/615d5f31Eb8a54f73/d4174760430f1c7d.png">
+<meta property="og:image" content="https://dd-static.jd.com/ddimg/jfs/t1/198075/22/11640/57459/615d5f52E33a732d2/6c0d0a9f921f4b82.png">
+<meta property="og:image" content="https://dd-static.jd.com/ddimg/jfs/t1/124996/34/18886/28675/615d5f62Ec19d30c9/b856c4f9dab7fd31.png">
+<meta property="article:published_time" content="2021-10-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-06T08:41:13.604Z">
 <meta property="article:author" content="XIAOANDX">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="面试指南">
+<meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dd-static.jd.com/ddimg/jfs/t1/148126/31/20491/9928/615d5eaeEc5cebae5/b364360c227dc634.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://blog.xiaoandx.club/article/202105031215/index.html">
+  <link rel="canonical" href="https://blog.xiaoandx.club/article/202110061639/index.html">
   
     <link rel="alternate" href="/atom.xml" title="一个拥有像素眼的后端工程师" type="application/atom+xml">
   
@@ -337,21 +348,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">文章目录</h3>
-      
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%B0%E5%81%87%E8%AE%BE%E8%A6%81%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%8C%BB%E9%99%A2%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%83%A8%E5%88%86%E5%8A%9F%E8%83%BD%E5%88%A9%E7%94%A8%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">现假设要实现一个医院系统的部分功能利用软件设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BB%E9%99%A2%E7%B3%BB%E7%BB%9F%E9%97%AE%E9%A2%98"><span class="toc-number">1.0.1.</span> <span class="toc-text">医院系统问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="toc-number">1.0.2.</span> <span class="toc-text">1.1 问题分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-1%E7%9C%8B%E7%97%85%E6%B5%81%E7%A8%8B"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">1.1.1看病流程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-2%E6%8C%82%E5%8F%B7%E9%80%89%E6%8B%A9"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">1.1.2挂号选择</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-3-%E7%BB%93%E8%B4%A6%E8%AE%A1%E7%AE%97"><span class="toc-number">1.0.2.3.</span> <span class="toc-text">1.1.3 结账计算</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="toc-number">1.0.3.</span> <span class="toc-text">1.2 设计思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-1%E7%9C%8B%E7%97%85%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">1.2.1看病步骤</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-2%E5%8C%BB%E7%94%9F%E7%BB%93%E6%9E%84"><span class="toc-number">1.0.3.2.</span> <span class="toc-text">1.2.2医生结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-3%E7%97%85%E4%BE%8B%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.0.3.3.</span> <span class="toc-text">1.2.3病例实现</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E7%BC%96%E7%A0%81%E4%B8%8E%E6%B5%8B%E8%AF%95"><span class="toc-number">1.0.4.</span> <span class="toc-text">1.3 编码与测试</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-1%E6%A1%86%E6%9E%B6%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">1.0.4.1.</span> <span class="toc-text">1.3.1框架代码：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-2%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="toc-number">1.0.4.2.</span> <span class="toc-text">1.3.2测试结果：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-%E6%80%BB%E7%BB%93"><span class="toc-number">1.0.5.</span> <span class="toc-text">1.4 总结</span></a></li></ol></li></ol></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-202105031215" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-202110061639" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      64-说说TCP和UDP的区别
+      软件设计模式实现一个医院系统的部分功能
     </h1>
   
 
@@ -359,20 +370,20 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/article/202105031215/" class="article-date">
-	  <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+	<a href="/article/202110061639/" class="article-date">
+	  <time datetime="2021-10-05T16:00:00.000Z" itemprop="datePublished">2021-10-06</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link-link" href="/tags/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/" rel="tag">面试指南</a>
+	<a class="article-tag-link-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a>
   </span>
 
 
@@ -385,16 +396,53 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/article/202105031215/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/article/202110061639/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>首先，两者都是传输层的协议。</p>
-<p>其次，</p>
-<p>tcp提供可靠的传输协议，传输前需要建立连接，面向字节流，传输慢</p>
-<p>udp无法保证传输的可靠性，无需创建连接，以报文的方式传输，效率高</p>
+        <h2 id="现假设要实现一个医院系统的部分功能利用软件设计模式"><a href="#现假设要实现一个医院系统的部分功能利用软件设计模式" class="headerlink" title="现假设要实现一个医院系统的部分功能利用软件设计模式"></a>现假设要实现一个医院系统的部分功能利用软件设计模式</h2><h4 id="医院系统问题"><a href="#医院系统问题" class="headerlink" title="医院系统问题"></a>医院系统问题</h4><p>病人就诊：病人看病需要经过挂号（选择诊疗科目、选择医生），医生确诊，付费，医生治疗，结束治疗5个步骤，不同的步骤，不同的医院有不同的做法，请用模板方法模式抽象出这个病人就诊步骤，并能方便扩展。</p>
+<p>医生确诊需要开病例单，病人根据病历单的费用进行付费。病历单包括”基础诊疗费”和其它药物或治疗方法的费用，请用装饰器模式实现这个病历单，从而方便扩展不同的药物或治疗方法，并能够得到总费用，便于扩展。</p>
+<p>医院的部门结构往往是一个树状结构，而医生属于某个科室如图1-1所示，请用组合模式，实现医院结构，并能将这个组合模式应用到病人挂号处，方便的得到某种诊疗科目的所有医生，供病人选择。</p>
+<p><img src="https://dd-static.jd.com/ddimg/jfs/t1/148126/31/20491/9928/615d5eaeEc5cebae5/b364360c227dc634.png" alt="image.png"></p>
+<p>图 1-1 医院组织结构分布图</p>
+<h4 id="1-1-问题分析"><a href="#1-1-问题分析" class="headerlink" title="1.1 问题分析"></a>1.1 问题分析</h4><blockquote>
+<p> 问题分析就从题目内容展开分析，首先要做的就是基于问题的初步定义，对问题进行进一步的分解，这个分解可以是目标本身的分解，也可以是问题可能产生原因的分解。</p>
+</blockquote>
+<h5 id="1-1-1看病流程"><a href="#1-1-1看病流程" class="headerlink" title="1.1.1看病流程"></a>1.1.1看病流程</h5><p>根据题干中要求的去医院看病流程最重要有5个实际流程如图2-1所示，这里看病流程，基本满足普通医院及综合医院的流程需求。但还需要考虑到诊所看病的流程也满足这5个步骤。它用于描述看病步骤之间执行的先后顺序。图中的每个步骤结点可以用来表示一个完整的看病步骤，乃至整个看病流程，看病步骤结点间的有向边则表示两个步骤之间存在的偏序或者前驱关系。挂后步骤可以看着是医生确诊步骤的直接前驱步骤，而称医生确诊步骤是挂号步骤的直接后驱步骤。在图2-1中存在者如下的看病步骤关系：a -&gt; b, b -&gt; c, c -&gt; d, d -&gt; e或表示为：P={a,b,c,d,e}={(a,b),(b,c),(c,d),(d,e)}。</p>
+<p>通常，一个完整的医院看病流程由以上5个步骤组成，每个看病步骤完成特定的任务，它们在进行时，都需要按照一定的先后次序顺序执行，仅当前一个步骤执行完成后，才执行后一个看病步骤。</p>
+<p><img src="https://dd-static.jd.com/ddimg/jfs/t1/197249/33/11742/6377/615d5ec8Eeed7fdac/4adf3d43edded4c7.png" alt="image.png"></p>
+<p>图 2-1 医院看病关键流程</p>
+<h5 id="1-1-2挂号选择"><a href="#1-1-2挂号选择" class="headerlink" title="1.1.2挂号选择"></a>1.1.2挂号选择</h5><p>挂号步骤中也包含了一定的挂号先后次序顺序如图2-2所示。需要注意的是在挂号步骤，是需要展示医院组织关系图如图1-1，通过组织人员关系图来选择需要挂号医生。如果未选择需要进行挂号的医生，那挂号步骤将不能执行完成，随着挂号失败对应的看病流程已将无法按照顺序执行下去。</p>
+<p><img src="https://dd-static.jd.com/ddimg/jfs/t1/206851/17/3855/5023/615d5ed4E351dd529/affe9c06f4b722b4.png" alt="image.png"></p>
+<p>图 2-2 医院挂号流程</p>
+<h5 id="1-1-3-结账计算"><a href="#1-1-3-结账计算" class="headerlink" title="1.1.3 结账计算"></a>1.1.3 结账计算</h5><p>在进行病例结账步骤，必须要付费的直接前驱医生确诊步骤完成后才能进行付费详细执行顺序如图2-3所示。在医生确诊过程中会对病例进行修改，修改的内容主要是药品信息，病例上的信息都是为后面的付费步骤提供数据基础。付费需要先计算病例中药品合计金额，只有计算出正确金额，才可以进行后面操作。</p>
+<p><img src="https://dd-static.jd.com/ddimg/jfs/t1/197288/35/11791/10793/615d5ee4E4e443c73/5f3d19664aee9087.png" alt="image.png"></p>
+<p>图 2-3 医生确诊与付费流程</p>
+<h4 id="1-2-设计思路"><a href="#1-2-设计思路" class="headerlink" title="1.2 设计思路"></a>1.2 设计思路</h4><h5 id="1-2-1看病步骤"><a href="#1-2-1看病步骤" class="headerlink" title="1.2.1看病步骤"></a>1.2.1看病步骤</h5><p>通过对图2-1看病步骤的分析，每个看病步骤完成特定的任务，它们在进行时，都需要按照一定的先后次序顺序执行，仅当前一个步骤执行完成后，才执行后一个看病步骤。我们将主要的5个看病步骤抽象成一个模板方法。每个对应的步骤进行方法抽象，具体看病步骤的实现要根据实际医院进行具体的步骤实现。如诊所基本上没有挂号这个流程，诊所在实现挂号可以进行空实现。而普通医院可以实现选择指定医生进行挂号步骤。根据看病步骤为先后次序顺序执行，可以将看病步骤在一个方法中定义一个算法的骨架, 而将一些步骤延迟到具体的医院子类中. 模板方法使得具体医院子类可以在不改变算法结构的情况下, 重新定义算法中的某些步骤UML类设计见图2-4所示，看病流程如图2-7所示</p>
+<p><img src="https://dd-static.jd.com/ddimg/jfs/t1/211438/7/3882/17591/615d5ef4E8474d7aa/f0ec875f503b6d00.png" alt="image.png"></p>
+<p>图 2-4 看病流程框架UML</p>
+<h5 id="1-2-2医生结构"><a href="#1-2-2医生结构" class="headerlink" title="1.2.2医生结构"></a>1.2.2医生结构</h5><p>医院的医生组织结构,在组织模式上类似树的层次结构。允许你将对象组合成树形结构来表现&quot;整体/部分&quot;层次结构。组合能让客户以一致的方式处理个别对象以及对象组合。将对象组合成树形结构来表示”整体/部分”层次关系，允许用户以相同的方式处理单独对象和组合对象，组件(Component)类是组合类(Composite)和叶子类(Leaf)的父类，可以把组合类看成是树的中间节点。组合模式只适用于结构已知的树形结构，复杂结构不采用组合模式。可以将医院的各个科室组织为组合类,而每个科室的医生可以组织成叶子类。将科室组合类与医生叶子类组成一个树型结构,完整展示医院人员组织的结构UML类图如2-5所示。</p>
+<p><img src="https://dd-static.jd.com/ddimg/jfs/t1/204835/3/9811/14434/615d5f0dE494f2082/e0aa8eeb26efc314.png" alt="image.png"></p>
+<p>图 2-5 医院组织人员框架UML</p>
+<p><img src="https://dd-static.jd.com/ddimg/jfs/t1/156261/11/22631/18059/615d5f1bE0f610d91/a3462701ae806fba.png" alt="image.png"></p>
+<p>图 2-6 病例报告框架UML</p>
+<h5 id="1-2-3病例实现"><a href="#1-2-3病例实现" class="headerlink" title="1.2.3病例实现"></a>1.2.3病例实现</h5><p>病例主要是记录医生开药的一些药品信息,但是在记录药品时,没办法提前预知需要的药品名称品类和数量,所有没办法进行案例的价格合计。随着药品数量不确定性,可以将基础的病例进行装饰得到不同药品的装饰器。</p>
+<p>装饰者(Decorator)和具体组件(ConcreteComponent)都继承自组件(Component)，具体组件的方法实现不需要依赖于其它对象，而装饰者组合了一个组件，这样它可以装饰其它装饰者或者具体组件。所谓装饰，就是把这个装饰者套在被装饰者之上，从而动态扩展被装饰者的功能。装饰者的方法有一部分是自己的，这属于它的功能，然后调用被装饰者的方法实现，从而也保留了被装饰者的功能。</p>
+<p>把病例中的药品,检查共同抽象为一个组件,而具体的药品信息,检查项目就为装饰者,在进行药品添加时就相当于给基础的病例进行一次次的装饰.最后得到完整病例具体UML类图如图2-6所示。</p>
+<h4 id="1-3-编码与测试"><a href="#1-3-编码与测试" class="headerlink" title="1.3 编码与测试"></a>1.3 编码与测试</h4><h5 id="1-3-1框架代码："><a href="#1-3-1框架代码：" class="headerlink" title="1.3.1框架代码："></a>1.3.1框架代码：</h5><ol>
+<li> <a target="_blank" rel="noopener" href="https://gitee.com/XIAOANDX/yibing-learning-code/tree/master/Java_code/designPattern/src/club/xiaoandx/finalTopicSelection">按住Ctrl点击查看Git仓库：设计模式期末1框架代码</a></li>
+</ol>
+<h5 id="1-3-2测试结果："><a href="#1-3-2测试结果：" class="headerlink" title="1.3.2测试结果："></a>1.3.2测试结果：</h5><p><img src="https://dd-static.jd.com/ddimg/jfs/t1/148532/17/20362/62012/615d5f31Eb8a54f73/d4174760430f1c7d.png" alt="image.png"></p>
+<p><img src="https://dd-static.jd.com/ddimg/jfs/t1/198075/22/11640/57459/615d5f52E33a732d2/6c0d0a9f921f4b82.png" alt="image.png"></p>
+<h4 id="1-4-总结"><a href="#1-4-总结" class="headerlink" title="1.4 总结"></a>1.4 总结</h4><blockquote>
+<p>在这个题目中在使用对应的设计模式开发过程中，对应问题再使用设计模式实现，跟实际业务需求有差别。设计模式是再软件开发中的一些问题解决方案，该方案不一定是最好的办法。但是这个方案是由众多的失败经验总结而得到的。</p>
+</blockquote>
+<p>学习设计模式，使我再实际开发中的由原来的面向类开发逐渐熟悉使用面向接口开发。使自己的代码更容易进行扩展与理解。</p>
+<p>再使用设计模式是为了降低开发代码的冗余，为了重用代码、让代码更容易被他人理解、保证代码可靠性。设计模式再软件工程开发中起到重要的基石作用，不是所有的问题都可以用设计模式来解决，设计模式针对平时出现在现实生活中都又之来对应，每种模式都描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是设计模式能被广泛应用的原因。</p>
+<p><img src="https://dd-static.jd.com/ddimg/jfs/t1/124996/34/18886/28675/615d5f62Ec19d30c9/b856c4f9dab7fd31.png" alt="image.png"></p>
+<p>图 2-7 患者选择医院看病流程图</p>
 
       
     </div>
@@ -404,7 +452,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://blog.xiaoandx.club/article/202105031215/" title="64-说说TCP和UDP的区别" target="_blank" rel="external">https://blog.xiaoandx.club/article/202105031215/</a>
+      <a href="https://blog.xiaoandx.club/article/202110061639/" title="软件设计模式实现一个医院系统的部分功能" target="_blank" rel="external">https://blog.xiaoandx.club/article/202110061639/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -453,12 +501,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/article/202105031214/" title="63-什么是XSS攻击？"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/article/202110061446/" title="Egg.js自定义插件(xml解析器)"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/article/202105031216/" title="65-什么是死锁？如何防止死锁？"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/article/202110051125/" title="ApiDoc APi开发文档生成器"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     

@@ -17,24 +17,22 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>72-SpringMVC+Spring的父子容器关系 | 大眼睛工程师</title>
-  <meta name="description" content="SpringMVC+Spring这种开发模式的时候，会有两个容器  SpringMVC容器管理，controller，Handlermapping，ViewResolver Spring容器管理，service，datasource，mapper，dao    Spring容器是父容器，SpringMVC容器是子容器 子容器可以访问父容器上面的资源，所以我们会在看Controller可以注入Ser">
+  <title>后端处理带有父子关系扁平数组转为JSON树对象 | 大眼睛工程师</title>
+  <meta name="description" content="前言 需求：在业务开发中，回存在许多父子级别的数据结构。如公司组织结构，员工角色等类似结构  123456xx公司	硬件部门	软件部门   		前端开发   		后端开发   		....  数据库设计出现了上面的的结构，那怎么将上面数据结构保存在数据库呢？会是下面这种吗，表中有一个parent_id指向父节点id，如果parent_id为0，代表这就是一个根节点。那要怎么将这种二维扁平数组变成树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="72-SpringMVC+Spring的父子容器关系">
-<meta property="og:url" content="https://blog.xiaoandx.club/article/202105031223/index.html">
+<meta property="og:title" content="后端处理带有父子关系扁平数组转为JSON树对象">
+<meta property="og:url" content="https://blog.xiaoandx.club/article/202110131646/index.html">
 <meta property="og:site_name" content="一个拥有像素眼的后端工程师">
-<meta property="og:description" content="SpringMVC+Spring这种开发模式的时候，会有两个容器  SpringMVC容器管理，controller，Handlermapping，ViewResolver Spring容器管理，service，datasource，mapper，dao    Spring容器是父容器，SpringMVC容器是子容器 子容器可以访问父容器上面的资源，所以我们会在看Controller可以注入Ser">
+<meta property="og:description" content="前言 需求：在业务开发中，回存在许多父子级别的数据结构。如公司组织结构，员工角色等类似结构  123456xx公司	硬件部门	软件部门   		前端开发   		后端开发   		....  数据库设计出现了上面的的结构，那怎么将上面数据结构保存在数据库呢？会是下面这种吗，表中有一个parent_id指向父节点id，如果parent_id为0，代表这就是一个根节点。那要怎么将这种二维扁平数组变成树">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.loli.net/2021/05/03/KO5ActHvFSEay91.jpg">
-<meta property="article:published_time" content="2021-05-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-05-03T04:19:42.730Z">
+<meta property="article:published_time" content="2021-10-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-13T09:42:10.608Z">
 <meta property="article:author" content="XIAOANDX">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="面试指南">
+<meta property="article:tag" content="NodeJs">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/05/03/KO5ActHvFSEay91.jpg">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://blog.xiaoandx.club/article/202105031223/index.html">
+  <link rel="canonical" href="https://blog.xiaoandx.club/article/202110131646/index.html">
   
     <link rel="alternate" href="/atom.xml" title="一个拥有像素眼的后端工程师" type="application/atom+xml">
   
@@ -339,21 +337,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">文章目录</h3>
-      
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.</span> <span class="toc-text">数据库设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0%E7%BC%96%E5%86%99"><span class="toc-number">3.</span> <span class="toc-text">转换函数编写</span></a></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-202105031223" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-202110131646" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      72-SpringMVC+Spring的父子容器关系
+      后端处理带有父子关系扁平数组转为JSON树对象
     </h1>
   
 
@@ -361,20 +359,20 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/article/202105031223/" class="article-date">
-	  <time datetime="2021-05-02T16:00:00.000Z" itemprop="datePublished">2021-05-03</time>
+	<a href="/article/202110131646/" class="article-date">
+	  <time datetime="2021-10-12T16:00:00.000Z" itemprop="datePublished">2021-10-13</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/Java%E9%9D%A2%E8%AF%95/">Java面试</a>
+    <a class="article-category-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB/">代码分享</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link-link" href="/tags/%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97/" rel="tag">面试指南</a>
+	<a class="article-tag-link-link" href="/tags/Java/" rel="tag">Java</a>, <a class="article-tag-link-link" href="/tags/NodeJs/" rel="tag">NodeJs</a>
   </span>
 
 
@@ -387,22 +385,25 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/article/202105031223/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/article/202110131646/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>SpringMVC+Spring这种开发模式的时候，会有两个容器</p>
-<ul>
-<li>SpringMVC容器管理，controller，Handlermapping，ViewResolver</li>
-<li>Spring容器管理，service，datasource，mapper，dao</li>
-</ul>
-<p><img src="https://i.loli.net/2021/05/03/KO5ActHvFSEay91.jpg" alt="img"></p>
-<ul>
-<li>Spring容器是父容器，SpringMVC容器是子容器</li>
-<li>子容器可以访问父容器上面的资源，所以我们会在看Controller可以注入Service</li>
-</ul>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>需求：在业务开发中，回存在许多父子级别的数据结构。如公司组织结构，员工角色等类似结构</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xx公司</span><br><span class="line">	硬件部门</span><br><span class="line">	软件部门</span><br><span class="line">   		前端开发</span><br><span class="line">   		后端开发</span><br><span class="line">   		....</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h3><p>出现了上面的的结构，那怎么将上面数据结构保存在数据库呢？会是下面这种吗，表中有一个<code>parent_id</code>指向父节点id，如果<code>parent_id</code>为0，代表这就是一个根节点。那要怎么将这种二维<code>扁平数组</code>变成树结构。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">router</span>: <span class="string">&#x27;2353163411184107728784&#x27;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;日常办公&#x27;</span>,</span><br><span class="line">    <span class="attr">icon</span>: <span class="string">&#x27;dashboard&#x27;</span>,</span><br><span class="line">    <span class="attr">parent_id</span>: <span class="string">&#x27;0&#x27;</span>,</span><br><span class="line">    <span class="attr">create_user</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">scopedSlots</span>: &#123; <span class="attr">icon</span>: <span class="string">&#x27;icon_sel&#x27;</span> &#125;,</span><br><span class="line">    <span class="attr">meta</span>: &#123; <span class="attr">page</span>: [<span class="built_in">Object</span>] &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">router</span>: <span class="string">&#x27;4ad9163411202135173173&#x27;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;请假&#x27;</span>,</span><br><span class="line">    <span class="attr">icon</span>: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">    <span class="attr">parent_id</span>: <span class="string">&#x27;2353163411184107728784&#x27;</span>,</span><br><span class="line">    <span class="attr">create_user</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">scopedSlots</span>: &#123; <span class="attr">icon</span>: <span class="string">&#x27;icon_sel&#x27;</span> &#125;,</span><br><span class="line">    <span class="attr">meta</span>: &#123; <span class="attr">page</span>: [<span class="built_in">Object</span>] &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">router</span>: <span class="string">&#x27;7b7f163411205109476557&#x27;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;财务报销&#x27;</span>,</span><br><span class="line">    <span class="attr">icon</span>: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">    <span class="attr">parent_id</span>: <span class="string">&#x27;2353163411184107728784&#x27;</span>,</span><br><span class="line">    <span class="attr">create_user</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">scopedSlots</span>: &#123; <span class="attr">icon</span>: <span class="string">&#x27;icon_sel&#x27;</span> &#125;,</span><br><span class="line">    <span class="attr">meta</span>: &#123; <span class="attr">page</span>: [<span class="built_in">Object</span>] &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">router</span>: <span class="string">&#x27;86aa163411207435681381&#x27;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;调休申请&#x27;</span>,</span><br><span class="line">    <span class="attr">icon</span>: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">    <span class="attr">parent_id</span>: <span class="string">&#x27;2353163411184107728784&#x27;</span>,</span><br><span class="line">    <span class="attr">create_user</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">scopedSlots</span>: &#123; <span class="attr">icon</span>: <span class="string">&#x27;icon_sel&#x27;</span> &#125;,</span><br><span class="line">    <span class="attr">meta</span>: &#123; <span class="attr">page</span>: [<span class="built_in">Object</span>] &#125;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>转换后的树结构是怎么样的呢，转换完成后就是下面这样的形式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;data&quot;</span>: [</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="string">&quot;router&quot;</span>: <span class="string">&quot;2353163411184107728784&quot;</span>,</span><br><span class="line">			<span class="string">&quot;name&quot;</span>: <span class="string">&quot;日常办公&quot;</span>,</span><br><span class="line">			<span class="string">&quot;icon&quot;</span>: <span class="string">&quot;dashboard&quot;</span>,</span><br><span class="line">			<span class="string">&quot;parent_id&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">			<span class="string">&quot;create_user&quot;</span>: <span class="number">1</span>,</span><br><span class="line">			<span class="string">&quot;scopedSlots&quot;</span>: &#123;</span><br><span class="line">				<span class="string">&quot;icon&quot;</span>: <span class="string">&quot;icon_sel&quot;</span></span><br><span class="line">			&#125;,</span><br><span class="line">			<span class="string">&quot;meta&quot;</span>: &#123;</span><br><span class="line">				<span class="string">&quot;page&quot;</span>: &#123;</span><br><span class="line">					<span class="string">&quot;pid&quot;</span>: <span class="string">&quot;2&quot;</span>,</span><br><span class="line">					<span class="string">&quot;state&quot;</span>: <span class="string">&quot;demo_1&quot;</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;,</span><br><span class="line">			<span class="string">&quot;children&quot;</span>: [</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="string">&quot;router&quot;</span>: <span class="string">&quot;4ad9163411202135173173&quot;</span>,</span><br><span class="line">					<span class="string">&quot;name&quot;</span>: <span class="string">&quot;我要请假&quot;</span>,</span><br><span class="line">					<span class="string">&quot;icon&quot;</span>: <span class="string">&quot;form&quot;</span>,</span><br><span class="line">					<span class="string">&quot;parent_id&quot;</span>: <span class="string">&quot;2353163411184107728784&quot;</span>,</span><br><span class="line">					<span class="string">&quot;create_user&quot;</span>: <span class="number">1</span>,</span><br><span class="line">					<span class="string">&quot;scopedSlots&quot;</span>: &#123;</span><br><span class="line">						<span class="string">&quot;icon&quot;</span>: <span class="string">&quot;icon_sel&quot;</span></span><br><span class="line">					&#125;,</span><br><span class="line">					<span class="string">&quot;meta&quot;</span>: &#123;</span><br><span class="line">						<span class="string">&quot;page&quot;</span>: &#123;</span><br><span class="line">							<span class="string">&quot;pid&quot;</span>: <span class="string">&quot;2&quot;</span>,</span><br><span class="line">							<span class="string">&quot;state&quot;</span>: <span class="string">&quot;demo_1&quot;</span></span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;,</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="string">&quot;router&quot;</span>: <span class="string">&quot;7b7f163411205109476557&quot;</span>,</span><br><span class="line">					<span class="string">&quot;name&quot;</span>: <span class="string">&quot;财务报销&quot;</span>,</span><br><span class="line">					<span class="string">&quot;icon&quot;</span>: <span class="string">&quot;form&quot;</span>,</span><br><span class="line">					<span class="string">&quot;parent_id&quot;</span>: <span class="string">&quot;2353163411184107728784&quot;</span>,</span><br><span class="line">					<span class="string">&quot;create_user&quot;</span>: <span class="number">1</span>,</span><br><span class="line">					<span class="string">&quot;scopedSlots&quot;</span>: &#123;</span><br><span class="line">						<span class="string">&quot;icon&quot;</span>: <span class="string">&quot;icon_sel&quot;</span></span><br><span class="line">					&#125;,</span><br><span class="line">					<span class="string">&quot;meta&quot;</span>: &#123;</span><br><span class="line">						<span class="string">&quot;page&quot;</span>: &#123;</span><br><span class="line">							<span class="string">&quot;pid&quot;</span>: <span class="string">&quot;2&quot;</span>,</span><br><span class="line">							<span class="string">&quot;state&quot;</span>: <span class="string">&quot;demo_1&quot;</span></span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;,</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="string">&quot;router&quot;</span>: <span class="string">&quot;86aa163411207435681381&quot;</span>,</span><br><span class="line">					<span class="string">&quot;name&quot;</span>: <span class="string">&quot;调休申请&quot;</span>,</span><br><span class="line">					<span class="string">&quot;icon&quot;</span>: <span class="string">&quot;form&quot;</span>,</span><br><span class="line">					<span class="string">&quot;parent_id&quot;</span>: <span class="string">&quot;2353163411184107728784&quot;</span>,</span><br><span class="line">					<span class="string">&quot;create_user&quot;</span>: <span class="number">1</span>,</span><br><span class="line">					<span class="string">&quot;scopedSlots&quot;</span>: &#123;</span><br><span class="line">						<span class="string">&quot;icon&quot;</span>: <span class="string">&quot;icon_sel&quot;</span></span><br><span class="line">					&#125;,</span><br><span class="line">					<span class="string">&quot;meta&quot;</span>: &#123;</span><br><span class="line">						<span class="string">&quot;page&quot;</span>: &#123;</span><br><span class="line">							<span class="string">&quot;pid&quot;</span>: <span class="string">&quot;2&quot;</span>,</span><br><span class="line">							<span class="string">&quot;state&quot;</span>: <span class="string">&quot;demo_1&quot;</span></span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			]</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="转换函数编写"><a href="#转换函数编写" class="headerlink" title="转换函数编写"></a>转换函数编写</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 二维扁平数组数据，转树型</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">convert</span>(<span class="params">list</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">const</span> result = [];</span><br><span class="line">	<span class="keyword">const</span> map = list.reduce(<span class="function">(<span class="params">pre, cur</span>) =&gt;</span> &#123;</span><br><span class="line">		pre[cur.router] = cur;</span><br><span class="line">		<span class="keyword">return</span> pre;</span><br><span class="line">	&#125;, &#123;&#125;);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">let</span> item <span class="keyword">of</span> list)&#123;</span><br><span class="line">		<span class="keyword">if</span>(item.parent_id === <span class="number">0</span>)&#123;</span><br><span class="line">			result.push(item);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(item.parent_id <span class="keyword">in</span> map)&#123;</span><br><span class="line">			<span class="keyword">const</span> parent = map[item.parent_id];</span><br><span class="line">			parent.children = parent.children || [];</span><br><span class="line">			parent.children.push(item);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj = convert(flatArr);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -412,7 +413,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://blog.xiaoandx.club/article/202105031223/" title="72-SpringMVC+Spring的父子容器关系" target="_blank" rel="external">https://blog.xiaoandx.club/article/202105031223/</a>
+      <a href="https://blog.xiaoandx.club/article/202110131646/" title="后端处理带有父子关系扁平数组转为JSON树对象" target="_blank" rel="external">https://blog.xiaoandx.club/article/202110131646/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -460,13 +461,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/article/202105031222/" title="71-谈谈SpringMVC的工作流程"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/article/202105031225/" title="74-什么是事务的传播特性及Spring支持的特性有哪些？"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/article/202110081126/" title="Egg.js 开发常用框架整合"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
